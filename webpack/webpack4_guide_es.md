@@ -234,28 +234,15 @@ Configure el preset en **.babelrc** :
 	"presets": [
 		"env",
 		"react"
-
-\]
-
+	]
 }
 ```
 
-y eres bueno para ir!
+Para poner a prueba las cosas, puedes crear un componente ficticio React en `./src/app.js` :
 
-Para poner a prueba las cosas, puede crear un componente ficticio React en ./src/App.js :
+```js
 
-1.  importar Reaccionar de "reaccionar" ;
-2.  importar ReactDOM desde "react-dom" ;
-
-4.  const App = ( ) = \> {
-5.  regreso (
-6.  < div >
-7.  < p \> ¡ Reacciona aquí ! < / p >
-8.  < / div >
-9.  );
-10.  };
-
-12.  export  default App;
+```
 
 14.  ReactDOM.render(<App />, document.getElementById("app"));
 
@@ -265,5 +252,5 @@ Next up import the component in ./src/index.js:
 
 and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgxNzYzMTMyNV19
+eyJoaXN0b3J5IjpbMTEyOTM5NTQ0Ml19
 -->

@@ -420,11 +420,12 @@ ejecutar la construcción:
 
 y echa un vistazo en la carpeta **./dist** . ¡Deberías ver el CSS resultante!
 
-Para recapitular: **extract-text-webpack-plugin** no funciona con webpack 4. Use **mini-css-extract-plugin en su** lugar.
+> **extract-text-webpack-plugin** no funciona con webpack 4. 
+> Usa **mini-css-extract-plugin** en su lugar.
 
-## webpack 4: el servidor de desarrollo webpack
+## webpack 4: el servidor de desarrollo webpack-dev-server
 
-Ejecutando npm run dev cada vez que realice cambios en su código? Lejos de ideal.
+Para no tener que ejecutarEjecutando `npm run dev` cada vez que realice cambios en su código? Lejos de ideal.
 
 Lleva solo un minuto configurar un servidor de desarrollo con paquete web.
 
@@ -463,5 +464,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc3NzMwMTk4MV19
+eyJoaXN0b3J5IjpbLTEwOTEwNzE0MzhdfQ==
 -->

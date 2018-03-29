@@ -337,7 +337,131 @@ Como puede ver, nada ha cambiado en lo que respecta al manejo de HTML. Webpack 4
 
 Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 
+## webpack 4: extracción de CSS a un archivo
 
+> En el pasado, era un trabajo para **extract-text-webpack-plugin** .
+Lamentablemente, dicho complemento no funciona bien con el paquete web 4.
+
+De acuerdo con Michael Ciniawsky:
+
+> extract-text-webpack-plugin llegó a un punto en el que mantenerlo se convirtió en una carga excesiva y no es la primera vez que actualizar una versión principal de un paquete web era complicado y engorroso debido a problemas con él.
+
+[mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) está aquí para superar esos problemas.
+
+_NOTA: asegúrese de actualizar el paquete web a la versión 4.2.0. ¡De lo contrario, mini-css-extract-plugin no funcionará!_
+
+Instale el complemento y el cargador css con:
+
+1.  npm i mini-css-extract-plugin css-loader --save-dev
+
+A continuación, crea un archivo CSS para probar cosas:
+
+1.  / \* \* /
+2.  / \* CREAR ESTE ARCHIVO EN ./src/main.css * /
+3.  / \* \* /
+
+5.  cuerpo {
+6.  línea-altura : 2 ;
+7.  }
+
+Configure tanto el complemento como el cargador:
+
+1.  const HtmlWebPackPlugin = require ( "html-webpack-plugin" ) ;
+2.  const MiniCssExtractPlugin = require ( "mini-css-extract-plugin" ) ;
+
+4.  módulo . exportaciones = {
+5.  módulo : {
+6.  reglas : \[
+7.  {
+8.  prueba : / \ . js $ / ,
+9.  exclude : / node_modules / ,
+10.  uso : {
+11.  cargador : "babel-loader"
+12.  }
+13.  } ,
+14.  {
+15.  prueba : / \ . html $ / ,
+16.  uso : \[
+17.  {
+18.  cargador : "html-loader" ,
+19.  opciones : { minimize : true }
+20.  }
+21.  \]
+22.  } ,
+23.  {
+24.  prueba : / \ . css $ / ,
+25.  uso : \[ MiniCssExtractPlugin . cargador , "css-loader" \]
+26.  }
+27.  \]
+28.  } ,
+29.  complementos : \[
+30.  nuevo HtmlWebPackPlugin ( {
+31.  plantilla : "./src/index.html" ,
+32.  nombre de archivo : "./index.html"
+33.  } ) ,
+34.  nuevo MiniCssExtractPlugin ( {
+35.  nombre de archivo : "\[nombre\] .css" ,
+36.  chunkFilename : "\[id\] .css"
+37.  } )
+38.  \]
+39.  } ;
+
+Finalmente importe el CSS en el punto de entrada:
+
+1.  //
+2.  // RUTA DE ESTE ARCHIVO: ./src/index.js
+3.  //
+
+5.  importar estilo de "./main.css" ;
+
+ejecutar la construcción:
+
+1.  npm ejecutar compilación
+
+y eche un vistazo en la carpeta **./dist** . ¡Debería ver el CSS resultante!
+
+Para recapitular: **extract-text-webpack-plugin** no funciona con webpack 4. Use **mini-css-extract-plugin en su** lugar.
+
+## webpack 4: el servidor de desarrollo webpack
+
+Ejecutando npm run dev cada vez que realice cambios en su código? Lejos de ideal.
+
+Lleva solo un minuto configurar un servidor de desarrollo con paquete web.
+
+Una vez configurado, el [servidor de](https://github.com/webpack/webpack-dev-server) desarrollo [webpack](https://github.com/webpack/webpack-dev-server) lanzará su aplicación dentro de un navegador.
+
+Automáticamente actualizará la ventana del navegador también, cada vez que cambie un archivo.
+
+Para configurar el servidor de desarrollo de webpack, instale el paquete con:
+
+1.  npm i webpack-dev-server --save-dev
+
+A continuación, abra package.json y ajuste los scripts de la siguiente manera:
+
+1.  "scripts" : {
+2.  "inicio" : "webpack-dev-server --mode development --open" ,
+3.  "build" : "webpack --mode production"
+4.  }
+
+Guarde y cierre el archivo.
+
+Ahora, ejecutando:
+
+1.  npm ejecutar inicio
+
+Verá que el servidor de desarrollo webpack está lanzando su aplicación dentro del navegador.
+
+El servidor de desarrollo webpack es ideal para el desarrollo. (Y hace que React Dev Tools funcione correctamente en su navegador).
+
+¡Manténganse al tanto! Más muy pronto…
+
+## webpack 4: recursos
+
+[Repo de](https://github.com/valentinogagliardi/webpack-4-quickstart) Github para el tutorial => [webpack-4-quickstart](https://github.com/valentinogagliardi/webpack-4-quickstart)
+
+Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía: una lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
+
+Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjQwNjI4NThdfQ==
+eyJoaXN0b3J5IjpbMjEwMDY0Mjg2OF19
 -->

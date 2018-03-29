@@ -221,17 +221,17 @@ Y estás listo para ejecutar la compilación.
 
 Instalar React con:
 
-1.  npm i reaccionar react-dom --save-dev
+	npm i react react-dom -D
 
-A continuación, agregue babel-preset-react :
+A continuación, agrega babel-preset-react :
 
-1.  npm i babel-preset-react --save-dev
+	npm i babel-preset-react -D
 
 Configure el preset en **.babelrc** :
 
 1.  {
-2.  "preajustes" : \[ "env" , "reaccionar" \]
-3.  }
+"preajustes" : \[ "env" , "reaccionar" \]
+}
 
 y eres bueno para ir!
 
@@ -258,5 +258,5 @@ Next up import the component in ./src/index.js:
 
 and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0Mjg1NTU2MV19
+eyJoaXN0b3J5IjpbLTc1NzMxNjcwN119
 -->

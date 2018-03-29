@@ -435,7 +435,12 @@ Para configurar el servidor de desarrollo de webpack, instala el paquete con:
 
 A continuación, abre `package.json` y ajuste los scripts de la siguiente manera:
 
-
+```json
+"scripts": {
+  "start": "webpack-dev-server --mode development --open",
+  "build": "webpack --mode production"
+}
+```
 
 Guarde y cierre el archivo.
 
@@ -457,5 +462,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDgyMDY5NjVdfQ==
+eyJoaXN0b3J5IjpbLTk5Nzc2MjY0N119
 -->

@@ -81,20 +81,20 @@ Un proyecto típico puede tener:
 
 Los modos de trabajo se configuran en el archivo de `package.json` de la siguiente manera:
 
-1.  "scripts" : {
-2.  	"dev" : "webpack --mode development" ,
-3.  	"build" : "webpack --mode production"
-4.  }
+	1.  "scripts" : {
+	2.  "dev" : "webpack --mode development" ,
+	3.  "build" : "webpack --mode production"
+	4.  }
 
 Ahora intenta ejecutar:
 
-1.  npm run dev
+	npm run dev
 
-y eche un vistazo a **./dist/main.js** . ¿Que ves? Sí, lo sé, un paquete aburrido ... ¡no minúsculo!
+y echa un vistazo a **./dist/main.js** 
 
 Ahora intenta ejecutar:
 
-1.  npm ejecutar compilación
+	npm run build
 
 y eche un vistazo a **./dist/main.js** . ¿Qué ves ahora? ¡Un **paquete reducido** !
 
@@ -110,5 +110,5 @@ Así que aquí está la segunda noticia: webpack 4 introduce el modo de **produc
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDMzOTA0ODEzXX0=
+eyJoaXN0b3J5IjpbMTAwNTA0MDMyMl19
 -->

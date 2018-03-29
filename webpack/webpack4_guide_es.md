@@ -152,13 +152,11 @@ El concepto de **configuración cero en webpack 4 se** aplica a:
 -   la **salida** . Predeterminado en ./dist/main.js
 -   **modo de producción y desarrollo** (no es necesario crear 2 confs separados para producción y desarrollo)
 
-Y es suficiente, pero para usar los loadersen el webpack 4, aún debes crear un archivo de configuración.
+Y es suficiente, pero para usar los loaders en el webpack 4, aún debes crear un archivo de configuración.
 
-Por ahora, todavía debes confiar en **webpack.config.js** . Vamos a ver…
+### webpack 4: uso de babel-loader con un archivo de configuración
 
-### paquete web 4: uso de babel-loader con un archivo de configuración
-
-Proporcione a webpack un archivo de configuración para usar babel-loader de la manera más clásica.
+Proporciona a webpack un archivo de configuración para usar babel-loader de la manera más clásica.
 
 Cree un nuevo archivo llamado webpack.config.js y configure el cargador:
 
@@ -209,5 +207,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDc1MzEyMDcyXX0=
+eyJoaXN0b3J5IjpbLTk1OTczNzk0XX0=
 -->

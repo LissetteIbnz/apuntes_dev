@@ -262,6 +262,80 @@ A continuación, importa el componente en `./src/index.js`:
 	import App from "./app";
 
 y ejecuta `npm run build` de nuevo.
+
+## webpack 4: el plugin de webpack HTML
+
+webpack necesita dos componentes adicionales para procesar HTML: html-webpack-plugin y html-loader.
+
+Agregue las dependencias con:
+
+1.  npm i html-webpack-plugin html-loader --save-dev
+
+Luego actualice la configuración del paquete web:
+
+1.  const HtmlWebPackPlugin = require ( "html-webpack-plugin" ) ;
+
+3.  módulo . exportaciones = {
+4.  módulo : {
+5.  reglas : \[
+6.  {
+7.  prueba : /\\.js$/ ,
+8.  exclude : / node_modules / ,
+9.  uso : {
+10.  cargador : "babel-loader"
+11.  }
+12.  } ,
+13.  {
+14.  prueba : / \ . html $ / ,
+15.  uso : \[
+16.  {
+17.  cargador : "html-loader" ,
+18.  opciones : { minimize : true }
+19.  }
+20.  \]
+21.  }
+22.  \]
+23.  } ,
+24.  complementos : \[
+25.  nuevo HtmlWebPackPlugin ( {
+26.  plantilla : "./src/index.html" ,
+27.  nombre de archivo : "./index.html"
+28.  } )
+29.  \]
+30.  } ;
+
+A continuación, cree un archivo HTML en ./src/index.html :
+
+1.  <! DOCTYPE html>
+2.  <html lang = "en" >
+
+4.  <head >
+5.  <meta charset = "utf-8" >
+6.  <title \> webpack 4 quickstart </ title>
+7.  </ head>
+
+9.  <cuerpo >
+10.  <div id = "app" >
+11.  </ div>
+12.  </ body>
+
+14.  </ html>
+
+ejecutar la compilación con:
+
+1.  npm ejecutar compilación
+
+y eche un vistazo a la carpeta ./dist . Debería ver el HTML resultante.
+
+No es necesario incluir su Javascript dentro del archivo HTML: el paquete se inyectará automáticamente.
+
+Abre ./dist/index.html en tu navegador: ¡deberías ver el componente React funcionando!
+
+Como puede ver, nada ha cambiado en lo que respecta al manejo de HTML.
+
+webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.
+
+Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2OTk5ODA5MTRdfQ==
+eyJoaXN0b3J5IjpbMjA1OTUwNjU0XX0=
 -->

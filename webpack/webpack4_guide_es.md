@@ -70,9 +70,9 @@ Observa que no es necesario indicarle un destino de salida. Por defecto utilizar
 
 Se verá en **./src/index.js** como el punto de entrada predeterminado. Además, sacará el bundle en **./dist/main.js** .
 
-En la siguiente sección, veremos otra característica interesante de webpack 4: modo de **producción y desarrollo** .
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcwNzg1MDYyXX0=
+eyJoaXN0b3J5IjpbMTY0NjU1NTMwMl19
 -->

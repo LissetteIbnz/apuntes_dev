@@ -115,13 +115,9 @@ Aquí hay un ejemplo:
 
 ## webpack 4: transpiling Javascript ES6 con Babel
 
-![webpack 4: transpiling Javascript ES6 con Babel](https://www.valentinog.com/blog/wp-content/uploads/2017/10/from-gulp-to-webpack-babel-300x136.png)
+Como no todos los navegadores saben cómo lidiar con ES6 necesitamos algún tipo de transformación.
 
-El Javascript moderno está escrito principalmente en ES6.
-
-Pero no todos los navegadores saben cómo lidiar con ES6. Necesitamos algún tipo de transformación.
-
-Este paso de transformación se llama **transpiling** . Transpiling es el acto de tomar ES6 y hacerlo comprensible para los navegadores más antiguos.
+Este paso de transformación se llama **transpiling**. Transpiling es el acto de tomar ES6 y hacerlo comprensible para los navegadores más antiguos.
 
 Webpack no sabe cómo hacer la transformación, pero tiene **cargadores** : piense en ellos como transformadores.
 
@@ -221,5 +217,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MjUxNTc4Ml19
+eyJoaXN0b3J5IjpbLTExMDkxNzIxMDBdfQ==
 -->

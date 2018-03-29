@@ -58,10 +58,13 @@ ERROR in Entry module not found: Error: Can't resolve './src' in '~/webpack-4-qu
 Webpack4 está buscando un punto de entrada `./src`
 El **entry point** es el archivo que busca webpack para comenzar a construir su paquete de Javascript.
 
+En la versión anterior de , el punto de entrada debe definirse dentro de un archivo de configuración denominado webpack.config.js.
+
+Pero a partir del **paquete web 4 no es necesario definir el punto de entrada** : ¡tomará **./src/index.js** como valor predeterminado!
 Crear ./src/index.js con el siguiente contenido:
 	
 	console.log(`I'm a silly entry point`);
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2MTE5MDgwNV19
+eyJoaXN0b3J5IjpbODU3ODE3MzM3XX0=
 -->

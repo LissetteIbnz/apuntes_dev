@@ -271,8 +271,9 @@ Agregue las dependencias con:
 
 	npm i html-webpack-plugin html-loader -D
 	
-Luego actualice la configuración del paquete web:
+Luego actualiza la configuración de webpack:
 
+```js
 1.  const HtmlWebPackPlugin = require ( "html-webpack-plugin" ) ;
 
 3.  módulo . exportaciones = {
@@ -337,5 +338,5 @@ webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.
 
 Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1ODA1ODAzMF19
+eyJoaXN0b3J5IjpbMjEwNzcwNzIzNl19
 -->

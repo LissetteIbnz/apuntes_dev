@@ -178,21 +178,23 @@ No es necesario especificar el punto de entrada a menos que desees personalizarl
 
 A continuación, abra **./src/index.js** y escriba algo de ES6:
 
-    const arr = \[1, 2, 3\];
-    const iAmJavascriptES6 = () => console.log(...arr);
-    window.iAmJavascriptES6 = iAmJavascriptES6;
+```javascript
+const arr = \[1, 2, 3\];
+const iAmJavascriptES6 = () => console.log(...arr);
+window.iAmJavascriptES6 = iAmJavascriptES6;
+```
 
 Finalmente crea el paquete con:
 
-1.  npm ejecutar compilación
+	npm run build
 
-Ahora eche un vistazo a **./dist/main.js** para ver el código transpilado.
+Ahora echa un vistazo a **./dist/main.js** para ver el código transpilado.
 
-### paquete web 4: uso de babel-loader sin un archivo de configuración
+### webpack 4: uso de babel-loader sin un archivo de configuración
 
 Hay otro método para usar cargadores webpack.
 
-El indicador de --module-bind le permite especificar cargadores desde la línea de comando. Gracias Cezar por señalar esto.
+El indicador de `--module-bind` le permite especificar cargadores desde la línea de comando. Gracias Cezar por señalar esto.
 
 La bandera no es webpack 4 específica. Estaba allí desde la versión 3.
 
@@ -207,5 +209,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTU0NDA4OTE1XX0=
+eyJoaXN0b3J5IjpbMTAxMDUzNjQ3M119
 -->

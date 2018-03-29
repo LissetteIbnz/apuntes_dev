@@ -215,13 +215,11 @@ Para usar babel-loader sin un archivo de configuración, configura tus scripts n
 
 Y estás listo para ejecutar la compilación.
 
-## webpack 4: configurar el paquete web 4 con React
+## webpack 4: configuración con React
 
-![Configuración de Reaccionar con paquete Bundler](https://www.valentinog.com/blog/wp-content/uploads/2017/12/react-webpack.babel_-300x101.png)
+> Primero será necesario instalar y configurar Babel.
 
-Eso es fácil una vez que haya instalado y configurado babel.
-
-Instalar Reaccionar con:
+Instalar React con:
 
 1.  npm i reaccionar react-dom --save-dev
 
@@ -260,5 +258,5 @@ Next up import the component in ./src/index.js:
 
 and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5NTMxNjAwNF19
+eyJoaXN0b3J5IjpbLTk0Mjg1NTU2MV19
 -->

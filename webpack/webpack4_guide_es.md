@@ -104,15 +104,122 @@ El modo de desarrollo, por otro lado, está optimizado para la velocidad y no ha
 
 ## webpack 4: anulando la entrada / salida predeterminada
 
-Los puntos de entrada/salida se configuran en el archivo `package.json !
+Los puntos de entrada/salida se configuran en el archivo `package.json`
 
 Aquí hay un ejemplo:
 
+    1.  "scripts" : {
+    2.  	"dev" : "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
+    3.  	"build" : "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
+    4.  }
+
+## webpack 4: transpiling Javascript ES6 con Babel
+
+![webpack 4: transpiling Javascript ES6 con Babel](https://www.valentinog.com/blog/wp-content/uploads/2017/10/from-gulp-to-webpack-babel-300x136.png)
+
+El Javascript moderno está escrito principalmente en ES6.
+
+Pero no todos los navegadores saben cómo lidiar con ES6. Necesitamos algún tipo de transformación.
+
+Este paso de transformación se llama **transpiling** . Transpiling es el acto de tomar ES6 y hacerlo comprensible para los navegadores más antiguos.
+
+Webpack no sabe cómo hacer la transformación, pero tiene **cargadores** : piense en ellos como transformadores.
+
+**babel-loader** es el cargador de webpack para transpilar ES6 y superior, hasta ES5.
+
+Para comenzar a usar el cargador, necesitamos instalar un conjunto de dependencias. En particular:
+
+-   babel-core
+-   babel-loader
+-   babel-preset-env para compilar código Javascript ES6 hasta ES5
+
+Vamos a hacerlo:
+
+1.  npm i babel-core babel-loader babel-preset-env --save-dev
+
+Luego configure Babel creando un nuevo archivo llamado **.babelrc** dentro de la carpeta del proyecto:
+
+1.  {
+2.  "preajustes" : \[
+3.  "env"
+4.  \]
+5.  }
+
+En este punto tenemos 2 opciones para configurar babel-loader:
+
+-   usando un archivo de configuración para el paquete web
+-   usando --module-bind en tus scripts npm
+
+Sí, sé lo que estás pensando. webpack 4 se comercializa como una herramienta de configuración cero. ¿Por qué escribirías un archivo de configuración de nuevo?
+
+El concepto de **configuración cero en el paquete web 4 se** aplica a:
+
+-   el **punto de entrada** . Predeterminado a ./src/index.js
+-   la **salida** . Predeterminado en ./dist/main.js
+-   **modo de producción y desarrollo** (no es necesario crear 2 confs separados para producción y desarrollo)
+
+Y es suficiente Pero para usar los cargadores en el paquete web 4, aún debe crear un archivo de configuración.
+
+Le pregunté a Sean sobre esto. ¿Los cargadores en el paquete web 4 funcionan igual que el paquete web 3? ¿Hay algún plan para proporcionar 0 conf para cargadores comunes como babel-loader?
+
+Su respuesta:
+
+"Para el futuro (después de v4, tal vez 4.x o 5.0), ya hemos comenzado la exploración de cómo un sistema preestablecido o complemento ayudará a definir esto. Lo que no queremos: intentar meter un montón de cosas en el núcleo como valores predeterminados Lo que queremos: permitir que otros se extiendan "
+
+Por ahora, todavía debes confiar en **webpack.config.js** . Vamos a ver…
+
+### paquete web 4: uso de babel-loader con un archivo de configuración
+
+Proporcione a webpack un archivo de configuración para usar babel-loader de la manera más clásica.
+
+Cree un nuevo archivo llamado webpack.config.js y configure el cargador:
+
+1.  módulo . exportaciones = {
+2.  módulo : {
+3.  reglas : \[
+4.  {
+5.  prueba : / \ . js $ / ,
+6.  exclude : / node_modules / ,
+7.  uso : {
+8.  cargador : "babel-loader"
+9.  }
+10.  }
+11.  \]
+12.  }
+13.  } ;
+
+No es necesario especificar el punto de entrada a menos que desee personalizarlo.
+
+A continuación, abra **./src/index.js** y escriba algo de ES6:
+
+1.  const arr = \[ 1 , 2 , 3 \] ;
+2.  const iAmJavascriptES6 = ( ) = \> consola . log ( . . . arr ) ;
+3.  ventana . iAmJavascriptES6 = iAmJavascriptES6 ;
+
+Finalmente crea el paquete con:
+
+1.  npm ejecutar compilación
+
+Ahora eche un vistazo a **./dist/main.js** para ver el código transpilado.
+
+### paquete web 4: uso de babel-loader sin un archivo de configuración
+
+Hay otro método para usar cargadores webpack.
+
+El indicador de --module-bind le permite especificar cargadores desde la línea de comando. Gracias Cezar por señalar esto.
+
+La bandera no es webpack 4 específica. Estaba allí desde la versión 3.
+
+Para usar babel-loader sin un archivo de configuración, configure sus scripts npm en **package.json** así:
+
 1.  "scripts" : {
-2.  "dev" : "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
-3.  "build" : "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
+2.  "dev" : "webpack --mode development --module-bind js = babel-loader" ,
+3.  "build" : "webpack --mode production --module-bind js = babel-loader"
 4.  }
 
+Y estás listo para ejecutar la compilación.
+
+No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM4Mjk5NTE0Ml19
+eyJoaXN0b3J5IjpbLTE0MjUxNTc4Ml19
 -->

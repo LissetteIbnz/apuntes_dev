@@ -274,37 +274,37 @@ Agregue las dependencias con:
 Luego actualiza la configuración de webpack:
 
 ```js
-1.  const HtmlWebPackPlugin = require ( "html-webpack-plugin" ) ;
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-3.  módulo . exportaciones = {
-4.  módulo : {
-5.  reglas : \[
-6.  {
-7.  prueba : /\\.js$/ ,
-8.  exclude : / node_modules / ,
-9.  uso : {
-10.  cargador : "babel-loader"
-11.  }
-12.  } ,
-13.  {
-14.  prueba : / \ . html $ / ,
-15.  uso : \[
-16.  {
-17.  cargador : "html-loader" ,
-18.  opciones : { minimize : true }
-19.  }
-20.  \]
-21.  }
-22.  \]
-23.  } ,
-24.  complementos : \[
-25.  nuevo HtmlWebPackPlugin ( {
-26.  plantilla : "./src/index.html" ,
-27.  nombre de archivo : "./index.html"
-28.  } )
-29.  \]
-30.  } ;
-
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
+};
+```
 A continuación, cree un archivo HTML en ./src/index.html :
 
 1.  <! DOCTYPE html>
@@ -338,5 +338,5 @@ webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.
 
 Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEwNzcwNzIzNl19
+eyJoaXN0b3J5IjpbLTE5ODM2OTc1NTldfQ==
 -->

@@ -81,10 +81,12 @@ Un proyecto típico puede tener:
 
 Los modos de trabajo se configuran en el archivo de `package.json` de la siguiente manera:
 
-	1.  "scripts" : {
-	2.  	"dev" : "webpack --mode development" ,
-	3.  	"build" : "webpack --mode production"
-	4.  }
+```json
+"scripts" : {
+  "dev" : "webpack --mode development" ,
+  "build" : "webpack --mode production"
+}
+```
 
 Ahora intenta ejecutar:
 
@@ -96,7 +98,7 @@ Ahora intenta ejecutar:
 
 	npm run build
 
-y eche un vistazo a **./dist/main.js** para ver un **paquete reducido**
+y echa un vistazo a **./dist/main.js** para ver un **paquete reducido**
 
 **El modo de producción** permite todo tipo de optimizaciones desde el primer momento. Incluye minificación, scope hoisting (elevación de alcance), tree-shaking y más...
 
@@ -108,10 +110,12 @@ Los puntos de entrada/salida se configuran en el archivo `package.json`
 
 Aquí hay un ejemplo:
 
-    1.  "scripts" : {
-    2.  	"dev" : "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
-    3.  	"build" : "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
-    4.  }
+```json
+"scripts": {
+	"dev" : "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
+	"build" : "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
+}
+```
 
 ## webpack 4: transpiling Javascript ES6 con Babel
 
@@ -207,5 +211,5 @@ Para usar babel-loader sin un archivo de configuración, configura tus scripts n
 
 Y estás listo para ejecutar la compilación.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2OTkyMDE5MF19
+eyJoaXN0b3J5IjpbMTExOTUzNzU0NF19
 -->

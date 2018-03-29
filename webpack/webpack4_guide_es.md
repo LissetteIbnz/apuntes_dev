@@ -263,14 +263,14 @@ A continuación, importa el componente en `./src/index.js`:
 
 y ejecuta `npm run build` de nuevo.
 
-## webpack 4: el plugin de webpack HTML
+## webpack 4: el HTML webpack plugin
 
-webpack necesita dos componentes adicionales para procesar HTML: html-webpack-plugin y html-loader.
+Webpack necesita dos componentes adicionales para procesar HTML: html-webpack-plugin y html-loader.
 
 Agregue las dependencias con:
 
-1.  npm i html-webpack-plugin html-loader --save-dev
-
+	npm i html-webpack-plugin html-loader -D
+	
 Luego actualice la configuración del paquete web:
 
 1.  const HtmlWebPackPlugin = require ( "html-webpack-plugin" ) ;
@@ -337,5 +337,5 @@ webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.
 
 Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1OTUwNjU0XX0=
+eyJoaXN0b3J5IjpbLTU1ODA1ODAzMF19
 -->

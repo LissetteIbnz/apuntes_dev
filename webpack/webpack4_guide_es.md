@@ -194,20 +194,15 @@ Ahora echa un vistazo a **./dist/main.js** para ver el código transpilado.
 
 Hay otro método para usar cargadores webpack.
 
-El indicador de `--module-bind` le permite especificar cargadores desde la línea de comando. Gracias Cezar por señalar esto.
+El indicador de `--module-bind` te permite especificar cargadores desde la línea de comando.
 
-La bandera no es webpack 4 específica. Estaba allí desde la versión 3.
+Para usar babel-loader sin un archivo de configuración, configura tus scripts npm en **package.json** así:
 
-Para usar babel-loader sin un archivo de configuración, configure sus scripts npm en **package.json** así:
 
-1.  "scripts" : {
-2.  "dev" : "webpack --mode development --module-bind js = babel-loader" ,
-3.  "build" : "webpack --mode production --module-bind js = babel-loader"
-4.  }
 
 Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxMDUzNjQ3M119
+eyJoaXN0b3J5IjpbMTIxMjE1Njk5NF19
 -->

@@ -112,8 +112,8 @@ Aquí hay un ejemplo:
 
 ```json
 "scripts": {
-	"dev" : "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
-	"build" : "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
+  "dev": "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
+  "build": "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
 }
 ```
 
@@ -139,11 +139,13 @@ Vamos a hacerlo:
 
 Luego configura Babel creando un nuevo archivo llamado **.babelrc** dentro de la carpeta del proyecto:
 
-	1.  {
-	2.  	"presets": [
-	3.  		"env"
+```js
+{
+  "presets": [
+"env"
 	4.  		]
 	5.  }
+```
 
 En este punto tenemos 2 opciones para configurar babel-loader:
 
@@ -211,5 +213,5 @@ Para usar babel-loader sin un archivo de configuración, configura tus scripts n
 
 Y estás listo para ejecutar la compilación.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTExOTUzNzU0NF19
+eyJoaXN0b3J5IjpbLTE1MDg3NjYyOTddfQ==
 -->

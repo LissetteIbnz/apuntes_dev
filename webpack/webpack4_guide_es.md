@@ -87,7 +87,8 @@ Los modos de trabajo se configuran en el archivo de `package.json` de la siguien
   "build" : "webpack --mode production"
 }
 ```
-> Se puede abreviar como -d
+> Se puede abreviar como -d para --mode development y -p para --mode production.
+
 Ahora intenta ejecutar:
 
 	npm run dev
@@ -455,5 +456,5 @@ Verás que webpack-dev-server está lanzando su aplicación dentro del navegador
 - Lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
 - Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMjA2Njg3NTldfQ==
+eyJoaXN0b3J5IjpbLTEyODkzNjYyNjFdfQ==
 -->

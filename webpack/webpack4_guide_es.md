@@ -442,25 +442,19 @@ A continuación, abre `package.json` y ajuste los scripts de la siguiente manera
 }
 ```
 
-Guarde y cierre el archivo.
+Ahora, ejecuta:
 
-Ahora, ejecutando:
+	npm start
 
-1.  npm ejecutar inicio
-
-Verá que el servidor de desarrollo webpack está lanzando su aplicación dentro del navegador.
-
-El servidor de desarrollo webpack es ideal para el desarrollo. (Y hace que React Dev Tools funcione correctamente en su navegador).
-
-¡Manténganse al tanto! Más muy pronto…
+Verás que webpack-dev-server está lanzando su aplicación dentro del navegador.
 
 ## webpack 4: recursos
 
-[Repo de](https://github.com/valentinogagliardi/webpack-4-quickstart) Github para el tutorial => [webpack-4-quickstart](https://github.com/valentinogagliardi/webpack-4-quickstart)
+Github para el tutorial => [Repo de webpack-4-quickstart](https://github.com/valentinogagliardi/webpack-4-quickstart)
 
 Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía: una lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5Nzc2MjY0N119
+eyJoaXN0b3J5IjpbOTgxOTAwMDIyXX0=
 -->

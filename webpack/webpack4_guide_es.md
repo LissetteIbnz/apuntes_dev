@@ -187,7 +187,7 @@ No es necesario especificar el punto de entrada a menos que desees personalizarl
 A continuación, abra **./src/index.js** y escriba algo de ES6:
 
 ```js
-const arr = \[1, 2, 3\];
+const arr = [1, 2, 3];
 const iAmJavascriptES6 = () => console.log(...arr);
 window.iAmJavascriptES6 = iAmJavascriptES6;
 ```
@@ -260,5 +260,5 @@ Next up import the component in ./src/index.js:
 
 and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1NjY1NTI2MF19
+eyJoaXN0b3J5IjpbLTg5NTMxNjAwNF19
 -->

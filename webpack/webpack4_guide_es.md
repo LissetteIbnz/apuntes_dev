@@ -167,19 +167,20 @@ Proporciona a webpack un archivo de configuración para usar babel-loader de la 
 Cree un nuevo archivo llamado `webpack.config.js` y configura el loader:
 
 ```js
-    1.  module.exports  =  {
-    2.  	module:  {
-    3.  		rules:  [
-    4.  			{
-    5.  				test:  /\.js$/,
-    6.  				exclude:  /node_modules/,
-    7.  				use:  {
-    8.  					loader:  "babel-loader"
-    9.  				}
-    10.  			}
-    11.  		]
-    12.  	}
-    13.  };
+module.exports  =  {
+  module:  {
+    rules:  [
+      {
+        test:  /\.js$/,
+        exclude:  /node_modules/,
+        use:  {
+        loader:  "babel-loader"
+        }
+      }
+    ]
+  }
+};
+```
 
 No es necesario especificar el punto de entrada a menos que desees personalizarlo.
 
@@ -214,5 +215,5 @@ Para usar babel-loader sin un archivo de configuración, configura tus scripts n
 
 Y estás listo para ejecutar la compilación.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY1MTcwNDU5MV19
+eyJoaXN0b3J5IjpbMjUyNjY2NDRdfQ==
 -->

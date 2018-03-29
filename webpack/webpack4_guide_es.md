@@ -132,7 +132,6 @@ Para comenzar a usar el loader, necesitamos instalar un conjunto de dependencias
 - babel-core: El core que necesitamos para cargar presets
 - babel-loader: Es un loader para poder utilizar babel con webpack
 - babel-preset-env: Para transpilar características de ES6 en adelante
-- babel-preset-react: Para transpilar JSX
 
 Vamos a hacerlo:
 
@@ -224,7 +223,7 @@ Instalar React con:
 
 	npm i react react-dom -D
 
-A continuación, agrega babel-preset-react :
+A continuación, agrega babel-preset-react (para tra:
 
 	npm i babel-preset-react -D
 
@@ -456,5 +455,5 @@ Verás que webpack-dev-server está lanzando su aplicación dentro del navegador
 - Lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
 - Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTAwMzE1NzYxXX0=
+eyJoaXN0b3J5IjpbLTE5MDA2MzU5OTRdfQ==
 -->

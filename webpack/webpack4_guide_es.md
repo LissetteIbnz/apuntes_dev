@@ -66,7 +66,9 @@ Sigamos... ahora creamos el archivo `./src/index.js` con el siguiente contenido:
 
 Y ejecutar `npm run build`de nuevo.
 Recibiremos el bundle en la ruta `~/webpack-config-prod/dist/main.js`
-Observa que no es necesario indicarle un destino de salida. Por defecto utilizará `dist/main.js`
+Observa que no es necesario indicarle un destino de salida. Por defecto utilizará `dist/main.js`. Por tanto, el primer cambio más importante es que **webpack4 no necesita archivo de configuración**.
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2OTIzMzk3M119
+eyJoaXN0b3J5IjpbLTEyMDI1Mjk1OThdfQ==
 -->

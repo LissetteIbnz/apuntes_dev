@@ -70,9 +70,59 @@ Observa que no es necesario indicarle un destino de salida. Por defecto utilizar
 
 Se verá en **./src/index.js** como el punto de entrada predeterminado. Además, sacará el bundle en **./dist/main.js** .
 
+## webpack 4: modo producción y desarrollo
 
+Tener 2 archivos de configuración es un patrón común en webpack.
+
+Un proyecto típico puede tener:
+
+-   un **archivo de configuración para desarrollo** , para definir el servidor **de desarrollo** webpack y otras cosas
+-   un **archivo de configuración para producción** , para definir **UglifyJSPlugin** , sourcemaps, etc.
+
+Mientras que los proyectos más grandes aún pueden necesitar 2 archivos, en el paquete web 4 puede pasar sin una sola línea de configuración.
+
+¿Cómo es eso?
+
+webpack 4 introduce el modo de **producción** y **desarrollo** .
+
+De hecho, si prestas atención a la salida de npm run build verás una buena advertencia:
+
+![webpack 4 desarrollo y modo de producción](https://www.valentinog.com/blog/wp-content/uploads/2018/01/webpack-4-production-development-mode.png)
+
+_La opción 'modo' no se ha configurado. Establezca la opción 'modo' en 'desarrollo' o 'producción' para habilitar los valores predeterminados para este entorno._
+
+Qué significa eso? Veamos.
+
+Abra [package.json](https://docs.npmjs.com/files/package.json) y complete la sección del script de la siguiente manera:
+
+1.  "scripts" : {
+2.  "dev" : "webpack --mode development" ,
+3.  "build" : "webpack --mode production"
+4.  }
+
+Ahora intenta ejecutar:
+
+1.  npm run dev
+
+y eche un vistazo a **./dist/main.js** . ¿Que ves? Sí, lo sé, un paquete aburrido ... ¡no minúsculo!
+
+Ahora intenta ejecutar:
+
+1.  npm ejecutar compilación
+
+y eche un vistazo a **./dist/main.js** . ¿Qué ves ahora? ¡Un **paquete reducido** !
+
+¡Sí!
+
+**El modo de producción** permite todo tipo de optimizaciones desde el primer momento. Incluye minificación, elevación de alcance, sacudida de árboles y más.
+
+El modo de desarrollo, por otro lado, está optimizado para la velocidad y no hace más que proporcionar un paquete no minificado.
+
+Así que aquí está la segunda noticia: webpack 4 introduce el modo de **producción** y **desarrollo** .
+
+¡En el paquete web 4 puedes vivir sin una sola línea de configuración! ¡Simplemente defina el indicador --mode y obtendrá todo gratis!
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0NjU1NTMwMl19
+eyJoaXN0b3J5IjpbLTIwNTM4MTA5NDVdfQ==
 -->

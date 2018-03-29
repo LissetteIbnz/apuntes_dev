@@ -340,19 +340,13 @@ Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 ## webpack 4: extracción de CSS a un archivo
 
 > En el pasado, era un trabajo para **extract-text-webpack-plugin** .
-Lamentablemente, dicho complemento no funciona bien con el paquete web 4.
+Lamentablemente, dicho complemento no funciona bien con webpack 4.
 
-De acuerdo con Michael Ciniawsky:
+_NOTA: asegúrate de actualizar webpack a la versión 4.2.0. ¡De lo contrario, mini-css-extract-plugin no funcionará!_
 
-> extract-text-webpack-plugin llegó a un punto en el que mantenerlo se convirtió en una carga excesiva y no es la primera vez que actualizar una versión principal de un paquete web era complicado y engorroso debido a problemas con él.
+Instala el complemento y el loader css con:
 
-[mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) está aquí para superar esos problemas.
-
-_NOTA: asegúrese de actualizar el paquete web a la versión 4.2.0. ¡De lo contrario, mini-css-extract-plugin no funcionará!_
-
-Instale el complemento y el cargador css con:
-
-1.  npm i mini-css-extract-plugin css-loader --save-dev
+	npm i mini-css-extract-plugin css-loader -D
 
 A continuación, crea un archivo CSS para probar cosas:
 
@@ -463,5 +457,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEwMDY0Mjg2OF19
+eyJoaXN0b3J5IjpbMTU3NjQ5MDEyMF19
 -->

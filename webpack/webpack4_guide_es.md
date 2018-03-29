@@ -223,7 +223,7 @@ Instalar React con:
 
 	npm i react react-dom -D
 
-A continuación, agrega babel-preset-react (para tra:
+A continuación, agrega babel-preset-react (para transpilar JSX):
 
 	npm i babel-preset-react -D
 
@@ -455,5 +455,5 @@ Verás que webpack-dev-server está lanzando su aplicación dentro del navegador
 - Lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
 - Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDA2MzU5OTRdfQ==
+eyJoaXN0b3J5IjpbMTg4MjI2MjczXX0=
 -->

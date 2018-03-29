@@ -38,9 +38,9 @@ Necesitamos `webpack-cli` también, que vive como un paquete separado:
 
 Ahora abra `package.json` y agregue un script de compilación:
 
-```javascript
-"scripts" : {
-  "build" : "webpack"
+```json
+"scripts": {
+  "build": "webpack"
 }
 ```
 
@@ -198,11 +198,14 @@ El indicador de `--module-bind` te permite especificar cargadores desde la líne
 
 Para usar babel-loader sin un archivo de configuración, configura tus scripts npm en **package.json** así:
 
-
+```json
+"scripts": {
+    "dev": "webpack --mode development --module-bind js=babel-loader",
+    "build": "webpack --mode production --module-bind js=babel-loader"
+  }
+```
 
 Y estás listo para ejecutar la compilación.
-
-No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxMjE1Njk5NF19
+eyJoaXN0b3J5IjpbLTU2OTkyMDE5MF19
 -->

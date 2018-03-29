@@ -254,14 +254,14 @@ const App = () => {
 
 export default App;
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App/>, document.getElementById("app"));
 ```
 
-Next up import the component in ./src/index.js:
+A continuación, importa el componente en `./src/index.js`:
 
-1.  import App from "./App";
+
 
 and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjA0NDE1NV19
+eyJoaXN0b3J5IjpbODUzMzQzOTM0XX0=
 -->

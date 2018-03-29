@@ -229,9 +229,16 @@ A continuación, agrega babel-preset-react :
 
 Configure el preset en **.babelrc** :
 
-1.  {
-"preajustes" : \[ "env" , "reaccionar" \]
+```js
+{
+	"presets": [
+		"env",
+		"react"
+
+\]
+
 }
+```
 
 y eres bueno para ir!
 
@@ -258,5 +265,5 @@ Next up import the component in ./src/index.js:
 
 and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc1NzMxNjcwN119
+eyJoaXN0b3J5IjpbMTgxNzYzMTMyNV19
 -->

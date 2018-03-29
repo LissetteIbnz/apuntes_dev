@@ -305,23 +305,11 @@ module.exports = {
   ]
 };
 ```
-A continuación, cree un archivo HTML en ./src/index.html :
+A continuación, crea un archivo HTML en `./src/index.html`:
 
-1.  <! DOCTYPE html>
-2.  <html lang = "en" >
+```html
 
-4.  <head >
-5.  <meta charset = "utf-8" >
-6.  <title \> webpack 4 quickstart </ title>
-7.  </ head>
-
-9.  <cuerpo >
-10.  <div id = "app" >
-11.  </ div>
-12.  </ body>
-
-14.  </ html>
-
+```
 ejecutar la compilación con:
 
 1.  npm ejecutar compilación
@@ -338,5 +326,5 @@ webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.
 
 Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5ODM2OTc1NTldfQ==
+eyJoaXN0b3J5IjpbLTE1NTg2ODk4MzFdfQ==
 -->

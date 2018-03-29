@@ -76,18 +76,9 @@ Tener 2 archivos de configuración es un patrón común en webpack.
 
 Un proyecto típico puede tener:
 
--   un **archivo de configuración para desarrollo** , para definir el servidor **de desarrollo** webpack y otras cosas
+-   un **archivo de configuración para desarrollo** , para definir el webpack-dev-server y otras cosas
 -   un **archivo de configuración para producción** , para definir **UglifyJSPlugin** , sourcemaps, etc.
 
-Mientras que los proyectos más grandes aún pueden necesitar 2 archivos, en el paquete web 4 puede pasar sin una sola línea de configuración.
-
-¿Cómo es eso?
-
-webpack 4 introduce el modo de **producción** y **desarrollo** .
-
-De hecho, si prestas atención a la salida de npm run build verás una buena advertencia:
-
-![webpack 4 desarrollo y modo de producción](https://www.valentinog.com/blog/wp-content/uploads/2018/01/webpack-4-production-development-mode.png)
 
 _La opción 'modo' no se ha configurado. Establezca la opción 'modo' en 'desarrollo' o 'producción' para habilitar los valores predeterminados para este entorno._
 
@@ -124,5 +115,5 @@ Así que aquí está la segunda noticia: webpack 4 introduce el modo de **produc
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTM4MTA5NDVdfQ==
+eyJoaXN0b3J5IjpbLTM0NzAzMDAxM119
 -->

@@ -350,13 +350,15 @@ Instala el complemento y el loader css con:
 
 A continuación, crea un archivo CSS para probar cosas:
 
-1.  / \* \* /
-2.  / \* CREAR ESTE ARCHIVO EN ./src/main.css * /
-3.  / \* \* /
+```css
+/**/
+/* CREATE THIS FILE IN ./src/main.css */
+/**/
 
-5.  cuerpo {
-6.  línea-altura : 2 ;
-7.  }
+body {
+    line-height: 2;
+}
+```
 
 Configure tanto el complemento como el cargador:
 
@@ -457,5 +459,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3NjQ5MDEyMF19
+eyJoaXN0b3J5IjpbLTMwMTA0MzAxMl19
 -->

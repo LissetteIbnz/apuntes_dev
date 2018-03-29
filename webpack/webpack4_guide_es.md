@@ -259,9 +259,9 @@ ReactDOM.render(<App/>, document.getElementById("app"));
 
 A continuación, importa el componente en `./src/index.js`:
 
+	import App from "./app";
 
-
-and run the build again.
+y ejecuta `npm run build` de nuevo.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODUzMzQzOTM0XX0=
+eyJoaXN0b3J5IjpbLTE2OTk5ODA5MTRdfQ==
 -->

@@ -119,11 +119,11 @@ Como no todos los navegadores saben cómo lidiar con ES6 necesitamos algún tipo
 
 Este paso de transformación se llama **transpiling**. Transpiling es el acto de tomar ES6 y hacerlo comprensible para los navegadores más antiguos.
 
-Webpack no sabe cómo hacer la transformación, pero tiene **loaders (cargadores)** : piense en ellos como transformadores.
+Webpack no sabe cómo hacer la transformación, pero tiene **loaders (cargadores)**: piensa en ellos como transformadores.
 
 **babel-loader** es el cargador de webpack para transpilar ES6 y superior, hasta ES5.
 
-Para comenzar a usar el cargador, necesitamos instalar un conjunto de dependencias. En particular:
+Para comenzar a usar el loader, necesitamos instalar un conjunto de dependencias. En particular:
 
 -   babel-core
 -   babel-loader
@@ -131,15 +131,15 @@ Para comenzar a usar el cargador, necesitamos instalar un conjunto de dependenci
 
 Vamos a hacerlo:
 
-1.  npm i babel-core babel-loader babel-preset-env --save-dev
+	npm i babel-core babel-loader babel-preset-env -D
 
-Luego configure Babel creando un nuevo archivo llamado **.babelrc** dentro de la carpeta del proyecto:
+Luego configura Babel creando un nuevo archivo llamado **.babelrc** dentro de la carpeta del proyecto:
 
-1.  {
-2.  "preajustes" : \[
-3.  "env"
-4.  \]
-5.  }
+	1.  {
+	2.  "preajustes" : [
+	3.  	"env"
+	4.  	]
+	5.  }
 
 En este punto tenemos 2 opciones para configurar babel-loader:
 
@@ -217,5 +217,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMzE0NDI0NjRdfQ==
+eyJoaXN0b3J5IjpbMjA0ODYxMzgxMV19
 -->

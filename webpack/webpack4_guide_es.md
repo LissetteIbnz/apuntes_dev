@@ -102,11 +102,17 @@ y eche un vistazo a **./dist/main.js** para ver un **paquete reducido**
 
 El modo de desarrollo, por otro lado, está optimizado para la velocidad y no hace más que proporcionar un paquete no minificado.
 
+## webpack 4: anulando la entrada / salida predeterminada
 
+Los puntos de entrada/salida se configuran en el archivo `package.json !
 
-¡En el paquete web 4 puedes vivir sin una sola línea de configuración! ¡Simplemente defina el indicador --mode y obtendrá todo gratis!
+Aquí hay un ejemplo:
 
+1.  "scripts" : {
+2.  "dev" : "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
+3.  "build" : "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
+4.  }
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNTI1ODEyNzZdfQ==
+eyJoaXN0b3J5IjpbLTM4Mjk5NTE0Ml19
 -->

@@ -327,11 +327,11 @@ ejecutar la compilación con:
 
 	npm run build
 
-y echa un vistazo a la carpeta `./dist`. Debería ver el HTML resultante.
+y echa un vistazo a la carpeta `./dist`. Deberías ver el HTML resultante.
 
-No es necesario incluir su Javascript dentro del archivo HTML: el paquete se inyectará automáticamente.
+> No es necesario incluir su Javascript dentro del archivo HTML: el bundle se inyectará automáticamente.
 
-Abre ./dist/index.html en tu navegador: ¡deberías ver el componente React funcionando!
+Abre `./dist/index.html` en tu navegador: ¡deberías ver el componente React funcionando!
 
 Como puede ver, nada ha cambiado en lo que respecta al manejo de HTML.
 
@@ -339,5 +339,5 @@ webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.
 
 Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzU0MzYyMTRdfQ==
+eyJoaXN0b3J5IjpbLTM2MjY2OTc3OF19
 -->

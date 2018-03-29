@@ -425,15 +425,11 @@ y echa un vistazo en la carpeta **./dist** . ¡Deberías ver el CSS resultante!
 
 ## webpack 4: el servidor de desarrollo webpack-dev-server
 
-Para no tener que ejecutarEjecutando `npm run dev` cada vez que realice cambios en su código? Lejos de ideal.
+Para no tener que ejecutar `npm run dev` cada vez que realizas cambios en el código, configuremos el servidor de desarrollo `webpack-dev-server`
 
-Lleva solo un minuto configurar un servidor de desarrollo con paquete web.
+Una vez configurado, automáticamente actualizará la ventana del navegador cada vez que cambie un archivo.
 
-Una vez configurado, el [servidor de](https://github.com/webpack/webpack-dev-server) desarrollo [webpack](https://github.com/webpack/webpack-dev-server) lanzará su aplicación dentro de un navegador.
-
-Automáticamente actualizará la ventana del navegador también, cada vez que cambie un archivo.
-
-Para configurar el servidor de desarrollo de webpack, instale el paquete con:
+Para configurar el servidor de desarrollo de webpack, instala el paquete con:
 
 1.  npm i webpack-dev-server --save-dev
 
@@ -464,5 +460,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTEwNzE0MzhdfQ==
+eyJoaXN0b3J5IjpbLTUxODExMzM2N119
 -->

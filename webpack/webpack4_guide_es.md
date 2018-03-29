@@ -59,13 +59,14 @@ Webpack4 está buscando un punto de entrada `./src`
 El **entry point** es el archivo que busca webpack para comenzar a construir su paquete de Javascript.
 
 En la versión anterior de webpack, el punto de entrada debía definirse dentro de un archivo de configuración denominado `webpack.config.js`.
-
 Pero a partir del **webpack 4 no es necesario definir el punto de entrada** : ¡cogerá **./src/index.js** como valor predeterminado!
 
 Sigamos... crear `./src/index.js` con el siguiente contenido:
 	
 	console.log(`I'm a silly entry point`);
 
+Y ejecutar `npm run build`de nuevo.
+You will get the bundle in ~/webpack-4-quickstart/dist/main.js.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjkzODE4MzddfQ==
+eyJoaXN0b3J5IjpbMTQwODY4MDc4OV19
 -->

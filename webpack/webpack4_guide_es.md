@@ -163,24 +163,24 @@ Cree un nuevo archivo llamado webpack.config.js y configure el cargador:
     1.  module.exports  =  {
     2.  	module:  {
     3.  		rules:  [
-    4.  		{
-    5.  			test:  /\.js$/,
-    6.  			exclude:  /node_modules/,
-    7.  			use:  {
-    8.  				loader:  "babel-loader"
-    9.  			}
-    10.  		}
-    11.  	]
-    12.  }
+    4.  			{
+    5.  				test:  /\.js$/,
+    6.  				exclude:  /node_modules/,
+    7.  				use:  {
+    8.  					loader:  "babel-loader"
+    9.  				}
+    10.  			}
+    11.  		]
+    12.  	}
     13.  };
 
-No es necesario especificar el punto de entrada a menos que desee personalizarlo.
+No es necesario especificar el punto de entrada a menos que desees personalizarlo.
 
 A continuación, abra **./src/index.js** y escriba algo de ES6:
 
-1.  const arr = \[ 1 , 2 , 3 \] ;
-2.  const iAmJavascriptES6 = ( ) = \> consola . log ( . . . arr ) ;
-3.  ventana . iAmJavascriptES6 = iAmJavascriptES6 ;
+    const arr = \[1, 2, 3\];
+    const iAmJavascriptES6 = () => console.log(...arr);
+    window.iAmJavascriptES6 = iAmJavascriptES6;
 
 Finalmente crea el paquete con:
 
@@ -207,5 +207,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQwODMwMzMzXX0=
+eyJoaXN0b3J5IjpbNTU0NDA4OTE1XX0=
 -->

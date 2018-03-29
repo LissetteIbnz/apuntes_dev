@@ -82,33 +82,31 @@ Un proyecto típico puede tener:
 Los modos de trabajo se configuran en el archivo de `package.json` de la siguiente manera:
 
 	1.  "scripts" : {
-	2.  "dev" : "webpack --mode development" ,
-	3.  "build" : "webpack --mode production"
+	2.  	"dev" : "webpack --mode development" ,
+	3.  	"build" : "webpack --mode production"
 	4.  }
 
 Ahora intenta ejecutar:
 
 	npm run dev
 
-y echa un vistazo a **./dist/main.js** 
+y echa un vistazo a **./dist/main.js**. El código no está optimizado.
 
 Ahora intenta ejecutar:
 
 	npm run build
 
-y eche un vistazo a **./dist/main.js** . ¿Qué ves ahora? ¡Un **paquete reducido** !
-
-¡Sí!
+y eche un vistazo a **./dist/main.js** para ver un **paquete reducido**
 
 **El modo de producción** permite todo tipo de optimizaciones desde el primer momento. Incluye minificación, elevación de alcance, sacudida de árboles y más.
 
 El modo de desarrollo, por otro lado, está optimizado para la velocidad y no hace más que proporcionar un paquete no minificado.
 
-Así que aquí está la segunda noticia: webpack 4 introduce el modo de **producción** y **desarrollo** .
+
 
 ¡En el paquete web 4 puedes vivir sin una sola línea de configuración! ¡Simplemente defina el indicador --mode y obtendrá todo gratis!
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwNTA0MDMyMl19
+eyJoaXN0b3J5IjpbLTEzNTI1ODEyNzZdfQ==
 -->

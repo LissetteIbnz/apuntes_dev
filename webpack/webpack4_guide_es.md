@@ -79,16 +79,11 @@ Un proyecto típico puede tener:
 -   un **archivo de configuración para desarrollo** , para definir el webpack-dev-server y otras cosas
 -   un **archivo de configuración para producción** , para definir **UglifyJSPlugin** , sourcemaps, etc.
 
-
-_La opción 'modo' no se ha configurado. Establezca la opción 'modo' en 'desarrollo' o 'producción' para habilitar los valores predeterminados para este entorno._
-
-Qué significa eso? Veamos.
-
-Abra [package.json](https://docs.npmjs.com/files/package.json) y complete la sección del script de la siguiente manera:
+Los modos de trabajo se configuran en el archivo de `package.json` de la siguiente manera:
 
 1.  "scripts" : {
-2.  "dev" : "webpack --mode development" ,
-3.  "build" : "webpack --mode production"
+2.  	"dev" : "webpack --mode development" ,
+3.  	"build" : "webpack --mode production"
 4.  }
 
 Ahora intenta ejecutar:
@@ -115,5 +110,5 @@ Así que aquí está la segunda noticia: webpack 4 introduce el modo de **produc
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM0NzAzMDAxM119
+eyJoaXN0b3J5IjpbNDMzOTA0ODEzXX0=
 -->

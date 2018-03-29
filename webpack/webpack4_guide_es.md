@@ -174,7 +174,7 @@ module.exports  =  {
         test:  /\.js$/,
         exclude:  /node_modules/,
         use:  {
-        loader:  "babel-loader"
+          loader:  "babel-loader"
         }
       }
     ]
@@ -186,7 +186,7 @@ No es necesario especificar el punto de entrada a menos que desees personalizarl
 
 A continuación, abra **./src/index.js** y escriba algo de ES6:
 
-```javascript
+```js
 const arr = \[1, 2, 3\];
 const iAmJavascriptES6 = () => console.log(...arr);
 window.iAmJavascriptES6 = iAmJavascriptES6;
@@ -214,6 +214,51 @@ Para usar babel-loader sin un archivo de configuración, configura tus scripts n
 ```
 
 Y estás listo para ejecutar la compilación.
+
+## webpack 4: configurar el paquete web 4 con React
+
+![Configuración de Reaccionar con paquete Bundler](https://www.valentinog.com/blog/wp-content/uploads/2017/12/react-webpack.babel_-300x101.png)
+
+Eso es fácil una vez que haya instalado y configurado babel.
+
+Instalar Reaccionar con:
+
+1.  npm i reaccionar react-dom --save-dev
+
+A continuación, agregue babel-preset-react :
+
+1.  npm i babel-preset-react --save-dev
+
+Configure el preset en **.babelrc** :
+
+1.  {
+2.  "preajustes" : \[ "env" , "reaccionar" \]
+3.  }
+
+y eres bueno para ir!
+
+Para poner a prueba las cosas, puede crear un componente ficticio React en ./src/App.js :
+
+1.  importar Reaccionar de "reaccionar" ;
+2.  importar ReactDOM desde "react-dom" ;
+
+4.  const App = ( ) = \> {
+5.  regreso (
+6.  < div >
+7.  < p \> ¡ Reacciona aquí ! < / p >
+8.  < / div >
+9.  );
+10.  };
+
+12.  export  default App;
+
+14.  ReactDOM.render(<App />, document.getElementById("app"));
+
+Next up import the component in ./src/index.js:
+
+1.  import App from "./App";
+
+and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjUyNjY2NDRdfQ==
+eyJoaXN0b3J5IjpbMTM1NjY1NTI2MF19
 -->

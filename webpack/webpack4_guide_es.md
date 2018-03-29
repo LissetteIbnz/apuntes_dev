@@ -431,14 +431,11 @@ Una vez configurado, automáticamente actualizará la ventana del navegador cada
 
 Para configurar el servidor de desarrollo de webpack, instala el paquete con:
 
-1.  npm i webpack-dev-server --save-dev
+	npm i webpack-dev-server -D
 
-A continuación, abra package.json y ajuste los scripts de la siguiente manera:
+A continuación, abre `package.json` y ajuste los scripts de la siguiente manera:
 
-1.  "scripts" : {
-2.  "inicio" : "webpack-dev-server --mode development --open" ,
-3.  "build" : "webpack --mode production"
-4.  }
+
 
 Guarde y cierre el archivo.
 
@@ -460,5 +457,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxODExMzM2N119
+eyJoaXN0b3J5IjpbLTE1NDgyMDY5NjVdfQ==
 -->

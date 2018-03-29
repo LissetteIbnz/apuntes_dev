@@ -386,7 +386,7 @@ module.exports = {
         \]
       },
       {
-        test: /content/\.css$/,
+        test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"]
       }
     \]
@@ -406,17 +406,19 @@ module.exports = {
 
 Finalmente importe el CSS en el punto de entrada:
 
-1.  //
-2.  // RUTA DE ESTE ARCHIVO: ./src/index.js
-3.  //
+```js
+//
+// PATH OF THIS FILE: ./src/index.js
+//
 
-5.  importar estilo de "./main.css" ;
+import style from "./main.css";
+```
 
 ejecutar la construcción:
 
-1.  npm ejecutar compilación
+	npm run build
 
-y eche un vistazo en la carpeta **./dist** . ¡Debería ver el CSS resultante!
+y echa un vistazo en la carpeta **./dist** . ¡Deberías ver el CSS resultante!
 
 Para recapitular: **extract-text-webpack-plugin** no funciona con webpack 4. Use **mini-css-extract-plugin en su** lugar.
 
@@ -461,5 +463,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwODk0NTIyMzBdfQ==
+eyJoaXN0b3J5IjpbMTc3NzMwMTk4MV19
 -->

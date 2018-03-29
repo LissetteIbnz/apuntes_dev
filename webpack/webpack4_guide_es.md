@@ -130,7 +130,7 @@ Webpack no sabe cómo hacer la transformación, pero tiene **loaders (cargadores
 Para comenzar a usar el loader, necesitamos instalar un conjunto de dependencias. En particular:
 
 -   babel-core
--   babel-loader
+-   babel-loader: Este loader es el que habilita el soporte a ES6 gracias al uso de Babel.js.
 -   babel-preset-env para compilar código Javascript ES6 hasta ES5
 
 Vamos a hacerlo:
@@ -152,7 +152,7 @@ En este punto tenemos 2 opciones para configurar babel-loader:
 -   usando un archivo de configuración para el webpack
 -   usando `--module-bind` en tus scripts npm
 
-El concepto de **configuración cero en webpack 4 se** aplica a:
+El concepto de **configuración cero en webpack 4** se aplica a:
 
 -   el **punto de entrada**. Predeterminado a ./src/index.js
 -   la **salida**. Predeterminado en ./dist/main.js
@@ -455,5 +455,5 @@ Verás que webpack-dev-server está lanzando su aplicación dentro del navegador
 - Lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
 - Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NTU5ODcxODZdfQ==
+eyJoaXN0b3J5IjpbMTMxMTE3MTU2MF19
 -->

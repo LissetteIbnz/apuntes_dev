@@ -241,10 +241,21 @@ Configure el preset en **.babelrc** :
 Para poner a prueba las cosas, puedes crear un componente ficticio React en `./src/app.js` :
 
 ```js
+import React from "react";
+import ReactDOM from "react-dom";
 
+const App = () => {
+  return (
+    <div>
+      <p>React here!</p>
+    </div>
+  );
+};
+
+export default App;
+
+ReactDOM.render(<App />, document.getElementById("app"));
 ```
-
-14.  ReactDOM.render(<App />, document.getElementById("app"));
 
 Next up import the component in ./src/index.js:
 
@@ -252,5 +263,5 @@ Next up import the component in ./src/index.js:
 
 and run the build again.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyOTM5NTQ0Ml19
+eyJoaXN0b3J5IjpbLTE5MjA0NDE1NV19
 -->

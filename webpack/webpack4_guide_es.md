@@ -136,17 +136,15 @@ Vamos a hacerlo:
 Luego configura Babel creando un nuevo archivo llamado **.babelrc** dentro de la carpeta del proyecto:
 
 	1.  {
-	2.  "preajustes" : [
-	3.  	"env"
-	4.  	]
+	2.  	"presets": [
+	3.  		"env"
+	4.  		]
 	5.  }
 
 En este punto tenemos 2 opciones para configurar babel-loader:
 
--   usando un archivo de configuración para el paquete web
--   usando --module-bind en tus scripts npm
-
-Sí, sé lo que estás pensando. webpack 4 se comercializa como una herramienta de configuración cero. ¿Por qué escribirías un archivo de configuración de nuevo?
+-   usando un archivo de configuración para el webpack
+-   usando `--module-bind` en tus scripts npm
 
 El concepto de **configuración cero en el paquete web 4 se** aplica a:
 
@@ -217,5 +215,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA0ODYxMzgxMV19
+eyJoaXN0b3J5IjpbLTkxMjMzMzU4NV19
 -->

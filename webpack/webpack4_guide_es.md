@@ -360,47 +360,49 @@ body {
 }
 ```
 
-Configure tanto el complemento como el cargador:
+Configure tanto el complemento como el loader:
 
-1.  const HtmlWebPackPlugin = require ( "html-webpack-plugin" ) ;
-2.  const MiniCssExtractPlugin = require ( "mini-css-extract-plugin" ) ;
+```js
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-4.  módulo . exportaciones = {
-5.  módulo : {
-6.  reglas : \[
-7.  {
-8.  prueba : / \ . js $ / ,
-9.  exclude : / node_modules / ,
-10.  uso : {
-11.  cargador : "babel-loader"
-12.  }
-13.  } ,
-14.  {
-15.  prueba : / \ . html $ / ,
-16.  uso : \[
-17.  {
-18.  cargador : "html-loader" ,
-19.  opciones : { minimize : true }
-20.  }
-21.  \]
-22.  } ,
-23.  {
-24.  prueba : / \ . css $ / ,
-25.  uso : \[ MiniCssExtractPlugin . cargador , "css-loader" \]
-26.  }
-27.  \]
-28.  } ,
-29.  complementos : \[
-30.  nuevo HtmlWebPackPlugin ( {
-31.  plantilla : "./src/index.html" ,
-32.  nombre de archivo : "./index.html"
-33.  } ) ,
-34.  nuevo MiniCssExtractPlugin ( {
-35.  nombre de archivo : "\[nombre\] .css" ,
-36.  chunkFilename : "\[id\] .css"
-37.  } )
-38.  \]
-39.  } ;
+module.exports = {
+  module: {
+    rules: \[
+      {
+        test: /\\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\\.html$/,
+        use: \[
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        \]
+      },
+      {
+        test: /\\.css$/,
+        use: \[MiniCssExtractPlugin.loader, "css-loader"\]
+      }
+    \]
+  },
+  plugins: \[
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "\[name\].css",
+      chunkFilename: "\[id\].css"
+    })
+  \]
+};
+```
 
 Finalmente importe el CSS en el punto de entrada:
 
@@ -459,5 +461,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwMTA0MzAxMl19
+eyJoaXN0b3J5IjpbLTEyNzAzNTcxNDhdfQ==
 -->

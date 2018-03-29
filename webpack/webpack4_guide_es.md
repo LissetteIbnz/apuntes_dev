@@ -368,17 +368,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   module: {
-    rules: \[
+    rules: [
       {
-        test: /\\.js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
       },
       {
-        test: /\\.html$/,
-        use: \[
+        test: /\.html$/,
+        use: [
           {
             loader: "html-loader",
             options: { minimize: true }
@@ -386,21 +386,21 @@ module.exports = {
         \]
       },
       {
-        test: /\\.css$/,
-        use: \[MiniCssExtractPlugin.loader, "css-loader"\]
+        test: /content/\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       }
     \]
   },
-  plugins: \[
+  plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: "\[name\].css",
-      chunkFilename: "\[id\].css"
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     })
-  \]
+  ]
 };
 ```
 
@@ -461,5 +461,5 @@ Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía:
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNzAzNTcxNDhdfQ==
+eyJoaXN0b3J5IjpbLTIwODk0NTIyMzBdfQ==
 -->

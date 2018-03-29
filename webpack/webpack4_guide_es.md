@@ -65,7 +65,8 @@ Sigamos... ahora creamos el archivo `./src/index.js` con el siguiente contenido:
 	console.log(`I'm a silly entry point`);
 
 Y ejecutar `npm run build`de nuevo.
-Recibiremos el bundle en la ruta `~/webpack-4-quickstart/dist/main.js.
+Recibiremos el bundle en la ruta `~/webpack-config-prod/dist/main.js`
+Observa que no es necesario indicarle un destino de salida. Por defecto utilizará `dist/main.js`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzUyMTY4OTBdfQ==
+eyJoaXN0b3J5IjpbMTU2OTIzMzk3M119
 -->

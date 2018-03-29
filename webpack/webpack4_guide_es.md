@@ -450,11 +450,12 @@ Verás que webpack-dev-server está lanzando su aplicación dentro del navegador
 
 ## webpack 4: recursos
 
-Github para el tutorial => [Repo de webpack-4-quickstart](https://github.com/valentinogagliardi/webpack-4-quickstart)
+Artículo traducido y adaptado de 
+Repo Github para el tutorial => [webpack-4-quickstart](https://github.com/valentinogagliardi/webpack-4-quickstart)
 
-Sé que ya hay una lista impresionante de paginas web, pero aquí está la mía: una lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
+Lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
 
 Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTgxOTAwMDIyXX0=
+eyJoaXN0b3J5IjpbLTEwODM2ODg3NTJdfQ==
 -->

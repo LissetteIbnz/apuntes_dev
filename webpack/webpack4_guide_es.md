@@ -142,9 +142,9 @@ Luego configura Babel creando un nuevo archivo llamado **.babelrc** dentro de la
 ```js
 {
   "presets": [
-"env"
-	4.  		]
-	5.  }
+    "env"
+  ]
+}
 ```
 
 En este punto tenemos 2 opciones para configurar babel-loader:
@@ -154,8 +154,8 @@ En este punto tenemos 2 opciones para configurar babel-loader:
 
 El concepto de **configuración cero en webpack 4 se** aplica a:
 
--   el **punto de entrada** . Predeterminado a ./src/index.js
--   la **salida** . Predeterminado en ./dist/main.js
+-   el **punto de entrada**. Predeterminado a ./src/index.js
+-   la **salida**. Predeterminado en ./dist/main.js
 -   **modo de producción y desarrollo** (no es necesario crear 2 confs separados para producción y desarrollo)
 
 Y es suficiente, pero para usar los loaders en el webpack 4, aún debes crear un archivo de configuración.
@@ -164,8 +164,9 @@ Y es suficiente, pero para usar los loaders en el webpack 4, aún debes crear un
 
 Proporciona a webpack un archivo de configuración para usar babel-loader de la manera más clásica.
 
-Cree un nuevo archivo llamado webpack.config.js y configure el cargador:
+Cree un nuevo archivo llamado `webpack.config.js` y configura el loader:
 
+```js
     1.  module.exports  =  {
     2.  	module:  {
     3.  		rules:  [
@@ -213,5 +214,5 @@ Para usar babel-loader sin un archivo de configuración, configura tus scripts n
 
 Y estás listo para ejecutar la compilación.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDg3NjYyOTddfQ==
+eyJoaXN0b3J5IjpbMTY1MTcwNDU5MV19
 -->

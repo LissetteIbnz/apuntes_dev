@@ -160,19 +160,19 @@ Proporciona a webpack un archivo de configuración para usar babel-loader de la 
 
 Cree un nuevo archivo llamado webpack.config.js y configure el cargador:
 
-1.  módulo . exportaciones = {
-2.  módulo : {
-3.  reglas : \[
-4.  {
-5.  prueba : / \ . js $ / ,
-6.  exclude : / node_modules / ,
-7.  uso : {
-8.  cargador : "babel-loader"
-9.  }
-10.  }
-11.  \]
-12.  }
-13.  } ;
+    1.  module.exports  =  {
+    2.  	module:  {
+    3.  		rules:  [
+    4.  		{
+    5.  			test:  /\.js$/,
+    6.  			exclude:  /node_modules/,
+    7.  			use:  {
+    8.  				loader:  "babel-loader"
+    9.  			}
+    10.  		}
+    11.  	]
+    12.  }
+    13.  };
 
 No es necesario especificar el punto de entrada a menos que desee personalizarlo.
 
@@ -207,5 +207,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk1OTczNzk0XX0=
+eyJoaXN0b3J5IjpbNTQwODMwMzMzXX0=
 -->

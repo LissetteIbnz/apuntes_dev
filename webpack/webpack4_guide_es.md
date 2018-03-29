@@ -98,7 +98,7 @@ Ahora intenta ejecutar:
 
 y eche un vistazo a **./dist/main.js** para ver un **paquete reducido**
 
-**El modo de producción** permite todo tipo de optimizaciones desde el primer momento. Incluye minificación, elevación de alcance, sacudida de árboles y más.
+**El modo de producción** permite todo tipo de optimizaciones desde el primer momento. Incluye minificación, scope hoisting (elevación de alcance), tree-shaking y más...
 
 El modo de desarrollo, por otro lado, está optimizado para la velocidad y no hace más que proporcionar un paquete no minificado.
 
@@ -119,7 +119,7 @@ Como no todos los navegadores saben cómo lidiar con ES6 necesitamos algún tipo
 
 Este paso de transformación se llama **transpiling**. Transpiling es el acto de tomar ES6 y hacerlo comprensible para los navegadores más antiguos.
 
-Webpack no sabe cómo hacer la transformación, pero tiene **cargadores** : piense en ellos como transformadores.
+Webpack no sabe cómo hacer la transformación, pero tiene **loaders (cargadores)** : piense en ellos como transformadores.
 
 **babel-loader** es el cargador de webpack para transpilar ES6 y superior, hasta ES5.
 
@@ -217,5 +217,5 @@ Y estás listo para ejecutar la compilación.
 
 No soy fanático de este método (no me gustan los scripts de Fat NPM) pero de todos modos es interesante.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMDkxNzIxMDBdfQ==
+eyJoaXN0b3J5IjpbLTEyMzE0NDI0NjRdfQ==
 -->

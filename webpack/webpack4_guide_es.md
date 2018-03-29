@@ -361,3 +361,6 @@ Usa <strong>mini-css-extract-plugin</strong> en su lugar.</p>
 <li>Sería negligente por no mencionar <a href="https://survivejs.com/webpack/">SurviveJS webpack 4</a> por Juho Vepsäläinen</li>
 </ul>
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTk2NTQ1MzAwOF19
+-->

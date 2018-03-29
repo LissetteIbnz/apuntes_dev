@@ -1,460 +1,363 @@
-# WEBPACK CONFIG PROD
+---
+
+
+---
+
+<h1 id="webpack-config-prod">WEBPACK CONFIG PROD</h1>
+<blockquote>
+<p>Desde 0 a configuración de modo producción</p>
+</blockquote>
+<h2 id="tabla-de-contenido">TABLA DE CONTENIDO</h2>
+<ol>
+<li>webpack 4: comenzar con cero config</li>
+<li>webpack 4: modo de producción y desarrollo</li>
+<li>webpack 4: anulando la entrada/salida predeterminada</li>
+<li>webpack 4: transpilar Javascript ES6 con Babel</li>
+<li>webpack 4: configurar con React</li>
+<li>webpack 4: plugin de webpack HTML</li>
+<li>webpack 4: extracción de CSS a un archivo</li>
+<li>webpack 4: servidor de desarrollo webpack</li>
+<li>webpack 4: recursos</li>
+</ol>
+<h3 id="webpack-4-comenzar-con-cero-config">webpack 4: comenzar con cero config</h3>
+<blockquote>
+<p>webpack 4 no necesita un archivo de configuración por defecto.</p>
+</blockquote>
+<p>Crea un nuevo directorio y muévete hacia él:</p>
+<pre><code>mkdir webpack-config-prod &amp;&amp; cd $ _
+</code></pre>
+<p>Inicializa un paquete.json ejecutando:</p>
+<pre><code>npm init -y
+</code></pre>
+<p>y tira del webpack4 en:</p>
+<pre><code>npm install webpack --save-dev
+</code></pre>
+<p>o lo que es lo mismo <code>npm i webpack -D</code></p>
+<p>Necesitamos <code>webpack-cli</code> también, que vive como un paquete separado:</p>
+<pre><code>npm i webpack-cli -D
+</code></pre>
+<p>Ahora abra <code>package.json</code> y agregue un script de compilación:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token string">"scripts"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"build"</span><span class="token punctuation">:</span> <span class="token string">"webpack"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Cierra el archivo y guárdalo.</p>
+<p>Intenta ejecutar:</p>
+<pre><code>npm run build
+</code></pre>
+<p>y mira lo que pasa:</p>
+<pre class=" language-bash"><code class="prism  language-bash">ERROR <span class="token keyword">in</span> Entry module not found: Error: Can<span class="token string">'t resolve '</span>./src<span class="token string">' in '</span>~/webpack-4-quickstart'
+</code></pre>
+<p>Webpack4 está buscando un punto de entrada <code>./src</code><br>
+El <strong>entry point</strong> es el archivo que busca webpack para comenzar a construir su paquete de Javascript.</p>
+<p>En la versión anterior de webpack, el punto de entrada debía definirse dentro de un archivo de configuración denominado <code>webpack.config.js</code>. Pero a partir del <strong>webpack 4 no es necesario definir el punto de entrada</strong> : ¡cogerá <strong>./src/index.js</strong> como valor predeterminado!</p>
+<p>Sigamos… ahora creamos el archivo <code>./src/index.js</code> con el siguiente contenido:</p>
+<pre><code>console.log(`I'm a silly entry point`);
+</code></pre>
+<p>Y ejecutar <code>npm run build</code>de nuevo.<br>
+Recibiremos el bundle en la ruta <code>~/webpack-config-prod/dist/main.js</code><br>
+Observa que no es necesario indicarle un destino de salida. Por defecto utilizará <code>dist/main.js</code>. Por tanto, el primer cambio más importante es que <strong>webpack4 no necesita archivo de configuración</strong>.</p>
+<p>Se verá en <strong>./src/index.js</strong> como el punto de entrada predeterminado. Además, sacará el bundle en <strong>./dist/main.js</strong> .</p>
+<h2 id="webpack-4-modo-producción-y-desarrollo">webpack 4: modo producción y desarrollo</h2>
+<p>Tener 2 archivos de configuración es un patrón común en webpack.</p>
+<p>Un proyecto típico puede tener:</p>
+<ul>
+<li>un <strong>archivo de configuración para desarrollo</strong> , para definir el webpack-dev-server y otras cosas</li>
+<li>un <strong>archivo de configuración para producción</strong> , para definir <strong>UglifyJSPlugin</strong> , sourcemaps, etc.</li>
+</ul>
+<p>Los modos de trabajo se configuran en el archivo de <code>package.json</code> de la siguiente manera:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token string">"scripts"</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"dev"</span> <span class="token punctuation">:</span> <span class="token string">"webpack --mode development"</span> <span class="token punctuation">,</span>
+  <span class="token string">"build"</span> <span class="token punctuation">:</span> <span class="token string">"webpack --mode production"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>Se puede abreviar como -d para --mode development y -p para --mode production.</p>
+</blockquote>
+<p>Ahora intenta ejecutar:</p>
+<pre><code>npm run dev
+</code></pre>
+<p>y echa un vistazo a <strong>./dist/main.js</strong>. El código no está optimizado.</p>
+<p>Ahora intenta ejecutar:</p>
+<pre><code>npm run build
+</code></pre>
+<p>y echa un vistazo a <strong>./dist/main.js</strong> para ver un <strong>paquete reducido</strong></p>
+<p><strong>El modo de producción</strong> permite todo tipo de optimizaciones desde el primer momento. Incluye minificación, scope hoisting (elevación de alcance), tree-shaking y más…</p>
+<p>El modo de desarrollo, por otro lado, está optimizado para la velocidad y no hace más que proporcionar un paquete no minificado.</p>
+<h2 id="webpack-4-anulando-la-entrada--salida-predeterminada">webpack 4: anulando la entrada / salida predeterminada</h2>
+<p>Los puntos de entrada/salida se configuran en el archivo <code>package.json</code></p>
+<p>Aquí hay un ejemplo:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token string">"scripts"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"dev"</span><span class="token punctuation">:</span> <span class="token string">"webpack --mode development ./foo/src/js/index.js --output ./foo/main.js"</span> <span class="token punctuation">,</span>
+  <span class="token string">"build"</span><span class="token punctuation">:</span> <span class="token string">"webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="webpack-4-transpiling-javascript-es6-con-babel">webpack 4: transpiling Javascript ES6 con Babel</h2>
+<p>Como no todos los navegadores saben cómo lidiar con ES6 necesitamos algún tipo de transformación.</p>
+<p>Este paso de transformación se llama <strong>transpiling</strong>. Transpiling es el acto de tomar ES6 y hacerlo comprensible para los navegadores más antiguos.</p>
+<p>Webpack no sabe cómo hacer la transformación, pero tiene <strong>loaders (cargadores)</strong>: piensa en ellos como transformadores.</p>
+<p><strong>babel-loader</strong> es el cargador de webpack para transpilar ES6 y superior, hasta ES5.</p>
+<p>Para comenzar a usar el loader, necesitamos instalar un conjunto de dependencias. En particular:</p>
+<ul>
+<li>babel-core: El core que necesitamos para cargar presets</li>
+<li>babel-loader: Es un loader para poder utilizar babel con webpack</li>
+<li>babel-preset-env: Para transpilar características de ES6 en adelante</li>
+</ul>
+<p>Vamos a hacerlo:</p>
+<pre><code>npm i babel-core babel-loader babel-preset-env -D
+</code></pre>
+<p>Luego configura Babel creando un nuevo archivo llamado <strong>.babelrc</strong> dentro de la carpeta del proyecto:</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token punctuation">{</span>
+  <span class="token string">"presets"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"env"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este punto tenemos 2 opciones para configurar babel-loader:</p>
+<ul>
+<li>usando un archivo de configuración para el webpack</li>
+<li>usando <code>--module-bind</code> en tus scripts npm</li>
+</ul>
+<p>El concepto de <strong>configuración cero en webpack 4</strong> se aplica a:</p>
+<ul>
+<li>el <strong>punto de entrada</strong>. Predeterminado a ./src/index.js</li>
+<li>la <strong>salida</strong>. Predeterminado en ./dist/main.js</li>
+<li><strong>modo de producción y desarrollo</strong> (no es necesario crear 2 confs separados para producción y desarrollo)</li>
+</ul>
+<p>Y es suficiente, pero para usar los loaders en el webpack 4, aún debes crear un archivo de configuración.</p>
+<h3 id="webpack-4-uso-de-babel-loader-con-un-archivo-de-configuración">webpack 4: uso de babel-loader con un archivo de configuración</h3>
+<p>Proporciona a webpack un archivo de configuración para usar babel-loader de la manera más clásica.</p>
+<p>Cree un nuevo archivo llamado <code>webpack.config.js</code> y configura el loader:</p>
+<pre class=" language-js"><code class="prism  language-js">module<span class="token punctuation">.</span>exports  <span class="token operator">=</span>  <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span>  <span class="token punctuation">{</span>
+    rules<span class="token punctuation">:</span>  <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span>  <span class="token regex">/\.js$/</span><span class="token punctuation">,</span>
+        exclude<span class="token punctuation">:</span>  <span class="token regex">/node_modules/</span><span class="token punctuation">,</span>
+        use<span class="token punctuation">:</span>  <span class="token punctuation">{</span>
+          loader<span class="token punctuation">:</span>  <span class="token string">"babel-loader"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>No es necesario especificar el punto de entrada a menos que desees personalizarlo.</p>
+<p>A continuación, abra <strong>./src/index.js</strong> y escriba algo de ES6:</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">iAmJavascriptES6</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">...</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>iAmJavascriptES6 <span class="token operator">=</span> iAmJavascriptES6<span class="token punctuation">;</span>
+</code></pre>
+<p>Finalmente crea el paquete con:</p>
+<pre><code>npm run build
+</code></pre>
+<p>Ahora echa un vistazo a <strong>./dist/main.js</strong> para ver el código transpilado.</p>
+<h3 id="webpack-4-uso-de-babel-loader-sin-un-archivo-de-configuración">webpack 4: uso de babel-loader sin un archivo de configuración</h3>
+<p>Hay otro método para usar cargadores webpack.</p>
+<p>El indicador de <code>--module-bind</code> te permite especificar cargadores desde la línea de comando.</p>
+<p>Para usar babel-loader sin un archivo de configuración, configura tus scripts npm en <strong>package.json</strong> así:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token string">"scripts"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"dev"</span><span class="token punctuation">:</span> <span class="token string">"webpack --mode development --module-bind js=babel-loader"</span><span class="token punctuation">,</span>
+    <span class="token string">"build"</span><span class="token punctuation">:</span> <span class="token string">"webpack --mode production --module-bind js=babel-loader"</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<p>Y estás listo para ejecutar la compilación.</p>
+<h2 id="webpack-4-configuración-con-react">webpack 4: configuración con React</h2>
+<blockquote>
+<p>Primero será necesario instalar y configurar Babel.</p>
+</blockquote>
+<p>Instalar React con:</p>
+<pre><code>npm i react react-dom -D
+</code></pre>
+<p>A continuación, agrega babel-preset-react (para transpilar JSX):</p>
+<pre><code>npm i babel-preset-react -D
+</code></pre>
+<p>Configure el preset en <strong>.babelrc</strong> :</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token punctuation">{</span>
+	<span class="token string">"presets"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+		<span class="token string">"env"</span><span class="token punctuation">,</span>
+		<span class="token string">"react"</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Para poner a prueba las cosas, puedes crear un componente ficticio React en <code>./src/app.js</code> :</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">"react-dom"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>React here<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>App<span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>A continuación, importa el componente en <code>./src/index.js</code>:</p>
+<pre><code>import App from "./app";
+</code></pre>
+<p>y ejecuta <code>npm run build</code> de nuevo.</p>
+<h2 id="webpack-4-el-html-webpack-plugin">webpack 4: el HTML webpack plugin</h2>
+<p>Webpack necesita dos componentes adicionales para procesar HTML: html-webpack-plugin y html-loader.</p>
+<p>Agregue las dependencias con:</p>
+<pre><code>npm i html-webpack-plugin html-loader -D
+</code></pre>
+<p>Luego actualiza la configuración de webpack:</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token keyword">const</span> HtmlWebPackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"html-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    rules<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/\.js$/</span><span class="token punctuation">,</span>
+        exclude<span class="token punctuation">:</span> <span class="token regex">/node_modules/</span><span class="token punctuation">,</span>
+        use<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          loader<span class="token punctuation">:</span> <span class="token string">"babel-loader"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/\.html$/</span><span class="token punctuation">,</span>
+        use<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            loader<span class="token punctuation">:</span> <span class="token string">"html-loader"</span><span class="token punctuation">,</span>
+            options<span class="token punctuation">:</span> <span class="token punctuation">{</span> minimize<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">HtmlWebPackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      template<span class="token punctuation">:</span> <span class="token string">"./src/index.html"</span><span class="token punctuation">,</span>
+      filename<span class="token punctuation">:</span> <span class="token string">"./index.html"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>A continuación, crea un archivo HTML en <code>./src/index.html</code>:</p>
+<pre class=" language-html"><code class="prism  language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>webpack 4 quickstart<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>ejecutar la compilación con:</p>
+<pre><code>npm run build
+</code></pre>
+<p>y echa un vistazo a la carpeta <code>./dist</code>. Deberías ver el HTML resultante.</p>
+<blockquote>
+<p>No es necesario incluir su Javascript dentro del archivo HTML: el bundle se inyectará automáticamente.</p>
+</blockquote>
+<p>Abre <code>./dist/index.html</code> en tu navegador: ¡deberías ver el componente React funcionando!</p>
+<p>Como puede ver, nada ha cambiado en lo que respecta al manejo de HTML. Webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.</p>
+<p>Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).</p>
+<h2 id="webpack-4-extracción-de-css-a-un-archivo">webpack 4: extracción de CSS a un archivo</h2>
+<blockquote>
+<p>En el pasado, era un trabajo para <strong>extract-text-webpack-plugin</strong> .<br>
+Lamentablemente, dicho complemento no funciona bien con webpack 4.</p>
+</blockquote>
+<p><em>NOTA: asegúrate de actualizar webpack a la versión 4.2.0. ¡De lo contrario, mini-css-extract-plugin no funcionará!</em></p>
+<p>Instala el complemento y el loader css con:</p>
+<pre><code>npm i mini-css-extract-plugin css-loader -D
+</code></pre>
+<p>A continuación, crea un archivo CSS para probar cosas:</p>
+<pre class=" language-css"><code class="prism  language-css"><span class="token comment">/**/</span>
+<span class="token comment">/* CREATE THIS FILE IN ./src/main.css */</span>
+<span class="token comment">/**/</span>
+
+<span class="token selector">body </span><span class="token punctuation">{</span>
+    <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Configure tanto el complemento como el loader:</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token keyword">const</span> HtmlWebPackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"html-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> MiniCssExtractPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"mini-css-extract-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    rules<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/\.js$/</span><span class="token punctuation">,</span>
+        exclude<span class="token punctuation">:</span> <span class="token regex">/node_modules/</span><span class="token punctuation">,</span>
+        use<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          loader<span class="token punctuation">:</span> <span class="token string">"babel-loader"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/\.html$/</span><span class="token punctuation">,</span>
+        use<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            loader<span class="token punctuation">:</span> <span class="token string">"html-loader"</span><span class="token punctuation">,</span>
+            options<span class="token punctuation">:</span> <span class="token punctuation">{</span> minimize<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        \<span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/\.css$/</span><span class="token punctuation">,</span>
+        use<span class="token punctuation">:</span> <span class="token punctuation">[</span>MiniCssExtractPlugin<span class="token punctuation">.</span>loader<span class="token punctuation">,</span> <span class="token string">"css-loader"</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    \<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">HtmlWebPackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      template<span class="token punctuation">:</span> <span class="token string">"./src/index.html"</span><span class="token punctuation">,</span>
+      filename<span class="token punctuation">:</span> <span class="token string">"./index.html"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">new</span> <span class="token class-name">MiniCssExtractPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      filename<span class="token punctuation">:</span> <span class="token string">"[name].css"</span><span class="token punctuation">,</span>
+      chunkFilename<span class="token punctuation">:</span> <span class="token string">"[id].css"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Finalmente importe el CSS en el punto de entrada:</p>
+<pre class=" language-js"><code class="prism  language-js"><span class="token comment">//</span>
+<span class="token comment">// PATH OF THIS FILE: ./src/index.js</span>
+<span class="token comment">//</span>
+
+<span class="token keyword">import</span> style <span class="token keyword">from</span> <span class="token string">"./main.css"</span><span class="token punctuation">;</span>
+</code></pre>
+<p>ejecutar la construcción:</p>
+<pre><code>npm run build
+</code></pre>
+<p>y echa un vistazo en la carpeta <strong>./dist</strong> . ¡Deberías ver el CSS resultante!</p>
+<blockquote>
+<p><strong>extract-text-webpack-plugin</strong> no funciona con webpack 4.<br>
+Usa <strong>mini-css-extract-plugin</strong> en su lugar.</p>
+</blockquote>
+<h2 id="webpack-4-el-servidor-de-desarrollo-webpack-dev-server">webpack 4: el servidor de desarrollo webpack-dev-server</h2>
+<p>Para no tener que ejecutar <code>npm run dev</code> cada vez que realizas cambios en el código, configuremos el servidor de desarrollo <code>webpack-dev-server</code></p>
+<p>Una vez configurado, automáticamente actualizará la ventana del navegador cada vez que cambie un archivo.</p>
+<p>Para configurar el servidor de desarrollo de webpack, instala el paquete con:</p>
+<pre><code>npm i webpack-dev-server -D
+</code></pre>
+<p>A continuación, abre <code>package.json</code> y ajuste los scripts de la siguiente manera:</p>
+<pre class=" language-json"><code class="prism  language-json"><span class="token string">"scripts"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token string">"webpack-dev-server --mode development --open"</span><span class="token punctuation">,</span>
+  <span class="token string">"build"</span><span class="token punctuation">:</span> <span class="token string">"webpack --mode production"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Ahora, ejecuta:</p>
+<pre><code>npm start
+</code></pre>
+<p>Verás que webpack-dev-server está lanzando su aplicación dentro del navegador.</p>
+<h2 id="webpack-4-recursos">webpack 4: recursos</h2>
+<ul>
+<li>Artículo traducido y adaptado de <a href="https://www.valentinog.com/blog/webpack-4-tutorial/#more-901">Valentino Gagliardi</a></li>
+<li>Repo Github para el tutorial =&gt; <a href="https://github.com/valentinogagliardi/webpack-4-quickstart">webpack-4-quickstart</a></li>
+<li>Lista de recursos geniales sobre webpack 4 =&gt; <a href="https://github.com/valentinogagliardi/awesome-webpack-4">awesome-webpack-4</a></li>
+<li>Sería negligente por no mencionar <a href="https://survivejs.com/webpack/">SurviveJS webpack 4</a> por Juho Vepsäläinen</li>
+</ul>
 
-> Desde 0 a configuración de modo producción
-
-## TABLA DE CONTENIDO
-
-1. webpack 4: comenzar con cero config
-2. webpack 4: modo de producción y desarrollo
-3. webpack 4: anulando la entrada/salida predeterminada
-4. webpack 4: transpilar Javascript ES6 con Babel
-5. webpack 4: configurar con React
-6. webpack 4: plugin de webpack HTML
-7. webpack 4: extracción de CSS a un archivo
-8. webpack 4: servidor de desarrollo webpack
-9. webpack 4: recursos
-
-### webpack 4: comenzar con cero config
-
-> webpack 4 no necesita un archivo de configuración por defecto.
-
-Crea un nuevo directorio y muévete hacia él:
-
-    mkdir webpack-config-prod && cd $ _
-
-Inicializa un paquete.json ejecutando:
-
-    npm init -y
-
-y tira del webpack4 en:
-
-    npm install webpack --save-dev
-
-o lo que es lo mismo `npm i webpack -D`
-
-Necesitamos `webpack-cli` también, que vive como un paquete separado:
-
-    npm i webpack-cli -D
-
-Ahora abra `package.json` y agregue un script de compilación:
-
-```json
-"scripts": {
-  "build": "webpack"
-}
-```
-
-Cierra el archivo y guárdalo.
-
-Intenta ejecutar:
-
-    npm run build
-
-y mira lo que pasa:
-
-```bash
-ERROR in Entry module not found: Error: Can't resolve './src' in '~/webpack-4-quickstart'
-```
-Webpack4 está buscando un punto de entrada `./src`
-El **entry point** es el archivo que busca webpack para comenzar a construir su paquete de Javascript.
-
-En la versión anterior de webpack, el punto de entrada debía definirse dentro de un archivo de configuración denominado `webpack.config.js`. Pero a partir del **webpack 4 no es necesario definir el punto de entrada** : ¡cogerá **./src/index.js** como valor predeterminado!
-
-Sigamos... ahora creamos el archivo `./src/index.js` con el siguiente contenido:
-	
-	console.log(`I'm a silly entry point`);
-
-Y ejecutar `npm run build`de nuevo.
-Recibiremos el bundle en la ruta `~/webpack-config-prod/dist/main.js`
-Observa que no es necesario indicarle un destino de salida. Por defecto utilizará `dist/main.js`. Por tanto, el primer cambio más importante es que **webpack4 no necesita archivo de configuración**.
-
-Se verá en **./src/index.js** como el punto de entrada predeterminado. Además, sacará el bundle en **./dist/main.js** .
-
-## webpack 4: modo producción y desarrollo
-
-Tener 2 archivos de configuración es un patrón común en webpack.
-
-Un proyecto típico puede tener:
-
--   un **archivo de configuración para desarrollo** , para definir el webpack-dev-server y otras cosas
--   un **archivo de configuración para producción** , para definir **UglifyJSPlugin** , sourcemaps, etc.
-
-Los modos de trabajo se configuran en el archivo de `package.json` de la siguiente manera:
-
-```json
-"scripts" : {
-  "dev" : "webpack --mode development" ,
-  "build" : "webpack --mode production"
-}
-```
-> Se puede abreviar como -d para --mode development y -p para --mode production.
-
-Ahora intenta ejecutar:
-
-	npm run dev
-
-y echa un vistazo a **./dist/main.js**. El código no está optimizado.
-
-Ahora intenta ejecutar:
-
-	npm run build
-
-y echa un vistazo a **./dist/main.js** para ver un **paquete reducido**
-
-**El modo de producción** permite todo tipo de optimizaciones desde el primer momento. Incluye minificación, scope hoisting (elevación de alcance), tree-shaking y más...
-
-El modo de desarrollo, por otro lado, está optimizado para la velocidad y no hace más que proporcionar un paquete no minificado.
-
-## webpack 4: anulando la entrada / salida predeterminada
-
-Los puntos de entrada/salida se configuran en el archivo `package.json`
-
-Aquí hay un ejemplo:
-
-```json
-"scripts": {
-  "dev": "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js" ,
-  "build": "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
-}
-```
-
-## webpack 4: transpiling Javascript ES6 con Babel
-
-Como no todos los navegadores saben cómo lidiar con ES6 necesitamos algún tipo de transformación.
-
-Este paso de transformación se llama **transpiling**. Transpiling es el acto de tomar ES6 y hacerlo comprensible para los navegadores más antiguos.
-
-Webpack no sabe cómo hacer la transformación, pero tiene **loaders (cargadores)**: piensa en ellos como transformadores.
-
-**babel-loader** es el cargador de webpack para transpilar ES6 y superior, hasta ES5.
-
-Para comenzar a usar el loader, necesitamos instalar un conjunto de dependencias. En particular:
-
-- babel-core: El core que necesitamos para cargar presets
-- babel-loader: Es un loader para poder utilizar babel con webpack
-- babel-preset-env: Para transpilar características de ES6 en adelante
-
-Vamos a hacerlo:
-
-	npm i babel-core babel-loader babel-preset-env -D
-
-Luego configura Babel creando un nuevo archivo llamado **.babelrc** dentro de la carpeta del proyecto:
-
-```js
-{
-  "presets": [
-    "env"
-  ]
-}
-```
-
-En este punto tenemos 2 opciones para configurar babel-loader:
-
--   usando un archivo de configuración para el webpack
--   usando `--module-bind` en tus scripts npm
-
-El concepto de **configuración cero en webpack 4** se aplica a:
-
--   el **punto de entrada**. Predeterminado a ./src/index.js
--   la **salida**. Predeterminado en ./dist/main.js
--   **modo de producción y desarrollo** (no es necesario crear 2 confs separados para producción y desarrollo)
-
-Y es suficiente, pero para usar los loaders en el webpack 4, aún debes crear un archivo de configuración.
-
-### webpack 4: uso de babel-loader con un archivo de configuración
-
-Proporciona a webpack un archivo de configuración para usar babel-loader de la manera más clásica.
-
-Cree un nuevo archivo llamado `webpack.config.js` y configura el loader:
-
-```js
-module.exports  =  {
-  module:  {
-    rules:  [
-      {
-        test:  /\.js$/,
-        exclude:  /node_modules/,
-        use:  {
-          loader:  "babel-loader"
-        }
-      }
-    ]
-  }
-};
-```
-
-No es necesario especificar el punto de entrada a menos que desees personalizarlo.
-
-A continuación, abra **./src/index.js** y escriba algo de ES6:
-
-```js
-const arr = [1, 2, 3];
-const iAmJavascriptES6 = () => console.log(...arr);
-window.iAmJavascriptES6 = iAmJavascriptES6;
-```
-
-Finalmente crea el paquete con:
-
-	npm run build
-
-Ahora echa un vistazo a **./dist/main.js** para ver el código transpilado.
-
-### webpack 4: uso de babel-loader sin un archivo de configuración
-
-Hay otro método para usar cargadores webpack.
-
-El indicador de `--module-bind` te permite especificar cargadores desde la línea de comando.
-
-Para usar babel-loader sin un archivo de configuración, configura tus scripts npm en **package.json** así:
-
-```json
-"scripts": {
-    "dev": "webpack --mode development --module-bind js=babel-loader",
-    "build": "webpack --mode production --module-bind js=babel-loader"
-  }
-```
-
-Y estás listo para ejecutar la compilación.
-
-## webpack 4: configuración con React
-
-> Primero será necesario instalar y configurar Babel.
-
-Instalar React con:
-
-	npm i react react-dom -D
-
-A continuación, agrega babel-preset-react (para transpilar JSX):
-
-	npm i babel-preset-react -D
-
-Configure el preset en **.babelrc** :
-
-```js
-{
-	"presets": [
-		"env",
-		"react"
-	]
-}
-```
-
-Para poner a prueba las cosas, puedes crear un componente ficticio React en `./src/app.js` :
-
-```js
-import React from "react";
-import ReactDOM from "react-dom";
-
-const App = () => {
-  return (
-    <div>
-      <p>React here!</p>
-    </div>
-  );
-};
-
-export default App;
-
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-
-A continuación, importa el componente en `./src/index.js`:
-
-	import App from "./app";
-
-y ejecuta `npm run build` de nuevo.
-
-## webpack 4: el HTML webpack plugin
-
-Webpack necesita dos componentes adicionales para procesar HTML: html-webpack-plugin y html-loader.
-
-Agregue las dependencias con:
-
-	npm i html-webpack-plugin html-loader -D
-	
-Luego actualiza la configuración de webpack:
-
-```js
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
-  ]
-};
-```
-A continuación, crea un archivo HTML en `./src/index.html`:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>webpack 4 quickstart</title>
-</head>
-
-<body>
-    <div id="app">
-    </div>
-</body>
-
-</html>
-```
-ejecutar la compilación con:
-
-	npm run build
-
-y echa un vistazo a la carpeta `./dist`. Deberías ver el HTML resultante.
-
-> No es necesario incluir su Javascript dentro del archivo HTML: el bundle se inyectará automáticamente.
-
-Abre `./dist/index.html` en tu navegador: ¡deberías ver el componente React funcionando!
-
-Como puede ver, nada ha cambiado en lo que respecta al manejo de HTML. Webpack 4 sigue siendo un paquete de módulos con el objetivo de Javascript.
-
-Pero hay planes para agregar HTML como módulo (HTML como punto de entrada).
-
-## webpack 4: extracción de CSS a un archivo
-
-> En el pasado, era un trabajo para **extract-text-webpack-plugin** .
-Lamentablemente, dicho complemento no funciona bien con webpack 4.
-
-_NOTA: asegúrate de actualizar webpack a la versión 4.2.0. ¡De lo contrario, mini-css-extract-plugin no funcionará!_
-
-Instala el complemento y el loader css con:
-
-	npm i mini-css-extract-plugin css-loader -D
-
-A continuación, crea un archivo CSS para probar cosas:
-
-```css
-/**/
-/* CREATE THIS FILE IN ./src/main.css */
-/**/
-
-body {
-    line-height: 2;
-}
-```
-
-Configure tanto el complemento como el loader:
-
-```js
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        \]
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
-      }
-    \]
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
-  ]
-};
-```
-
-Finalmente importe el CSS en el punto de entrada:
-
-```js
-//
-// PATH OF THIS FILE: ./src/index.js
-//
-
-import style from "./main.css";
-```
-
-ejecutar la construcción:
-
-	npm run build
-
-y echa un vistazo en la carpeta **./dist** . ¡Deberías ver el CSS resultante!
-
-> **extract-text-webpack-plugin** no funciona con webpack 4. 
-> Usa **mini-css-extract-plugin** en su lugar.
-
-## webpack 4: el servidor de desarrollo webpack-dev-server
-
-Para no tener que ejecutar `npm run dev` cada vez que realizas cambios en el código, configuremos el servidor de desarrollo `webpack-dev-server`
-
-Una vez configurado, automáticamente actualizará la ventana del navegador cada vez que cambie un archivo.
-
-Para configurar el servidor de desarrollo de webpack, instala el paquete con:
-
-	npm i webpack-dev-server -D
-
-A continuación, abre `package.json` y ajuste los scripts de la siguiente manera:
-
-```json
-"scripts": {
-  "start": "webpack-dev-server --mode development --open",
-  "build": "webpack --mode production"
-}
-```
-
-Ahora, ejecuta:
-
-	npm start
-
-Verás que webpack-dev-server está lanzando su aplicación dentro del navegador.
-
-## webpack 4: recursos
-
-- Artículo traducido y adaptado de [Valentino Gagliardi](https://www.valentinog.com/blog/webpack-4-tutorial/#more-901)
-- Repo Github para el tutorial => [webpack-4-quickstart](https://github.com/valentinogagliardi/webpack-4-quickstart)
-- Lista de recursos geniales sobre webpack 4 => [awesome-webpack-4](https://github.com/valentinogagliardi/awesome-webpack-4)
-- Sería negligente por no mencionar [SurviveJS webpack 4](https://survivejs.com/webpack/) por Juho Vepsäläinen
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODkzNjYyNjFdfQ==
--->

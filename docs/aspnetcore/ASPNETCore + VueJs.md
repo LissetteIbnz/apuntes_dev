@@ -281,7 +281,7 @@ namespace Persistence.Data
 
 Ahora, para inicializar la base de datos, podemos hacerlo mediante las migraciones con el PM o agregando la inicialización de la base de datos en el `Program.cs`.
 
-#### Por medio de migraciones:
+#### a) Por medio de migraciones
 
 En el proyecto Persistence, agregamos el paquete `Microsoft.EntityFrameworkCore.SqlServer` y después, en la Consola del Administrador de paquetes, elegimos el proyecto Persistence y ejecutamos los siguientes comandos:
 
@@ -291,7 +291,7 @@ En el proyecto Persistence, agregamos el paquete `Microsoft.EntityFrameworkCore.
     Applying migration '20180429114542_Initialize'.
     Done.
 
-#### Mediante el `main` en  `Program.cs`
+#### b) Mediante el `main` en  `Program.cs`
 
 En esta sección, escribirá un método que se llama después de crear la base de datos para rellenarla con datos de prueba.
 Aquí usará el método  `EnsureCreated`  para crear automáticamente la base de datos.

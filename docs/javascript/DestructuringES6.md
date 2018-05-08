@@ -133,3 +133,6 @@ const obj = {};
 ```
 
 If you  _declare_  variables or define parameters via destructuring then you must use simple identifiers, you can’t refer to object properties and Array elements.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE2NDgwMDI1ODddfQ==
+-->

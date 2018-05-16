@@ -3,13 +3,14 @@
 **Tabla de contenidos**
 
 - [Configurando nuestra Api con EF](#configurando-nuestra-api-con-ef)
-	- [SharedContracts](#sharedcontracts)
-	- [Persistence](#persistence)
-		- [Inyectar nuestro contexto con DI](#inyectar-nuestro-contexto-con-di)
+    - [SharedContracts](#sharedcontracts)
+    - [Persistence](#persistence)
+        - [Inyectar nuestro contexto con DI](#inyectar-nuestro-contexto-con-di)
 - [Agregando el código para inicializar la base de datos con datos de prueba](#agregando-el-código-para-inicializar-la-base-de-datos-con-datos-de-prueba)
 - [Services](#services)
 - [API](#api)
-- [Páginas de ayuda API mediante Swagger](#páginas-de-ayuda-api-mediante-swagger)
+- [Páginas de ayuda API mediante Swagger](Doc-API-Swagger.md)
+- [Crear el proyecto SPA ASP.NET Core con Vue.Js](SPA-ASPNetCore-VueJs.md)
 - [CORS y nuestro primer listar con Element-UI](#cors-y-nuestro-primer-listar-con-element-ui)
 - [Registrando un nuevo estudiante](#registrando-un-nuevo-estudiante)
 - [Actualizando y eliminado un estudiante](#actualizando-y-eliminado-un-estudiante)
@@ -126,8 +127,9 @@ namespace SharedContracts
 
 Agregaremos un nuevo proyecto tipo **Biblioteca de clases (.Net Core)** y seguidamente, crearemos la clase que contendrá nuestro [contexto de base de datos](https://docs.microsoft.com/es-es/aspnet/core/data/ef-mvc/intro#create-the-database-context)
 Nuestra clase será encargada de manejar las migraciones y la conexión a la base de datos. Para hacer funcionar esta parte debemos agregar los siguientes package de nuget y luego crear nuestro DbContext.
--   EntityFrameworkCore.SqlServer
--   EntityFrameworkCore.Tools
+
+- EntityFrameworkCore.SqlServer
+- EntityFrameworkCore.Tools
 
 _Persistence.SchoolDbContext.cs_
 
@@ -297,9 +299,9 @@ En esta sección, escribirá un método que se llama después de crear la base d
 Aquí usará el método  `EnsureCreated`  para crear automáticamente la base de datos.
 En  _Program.cs_, modifique el método  `Main`  para que haga lo siguiente al iniciar la aplicación:
 
--   Obtener una instancia del contexto de base de datos desde el contenedor de inserción de dependencias.
--   Llamar al método de inicialización, pasándolo al contexto.
--   Eliminar el contexto cuando el método de inicialización haya finalizado.
+- Obtener una instancia del contexto de base de datos desde el contenedor de inserción de dependencias.
+- Llamar al método de inicialización, pasándolo al contexto.
+- Eliminar el contexto cuando el método de inicialización haya finalizado.
 
 _API.Program.cs_
 
@@ -537,17 +539,6 @@ namespace API.Controllers
 }
 ```
 
-Con respecto a las rutas no hemos escrito ni unas reglas, así que estamos usando el ruteo REST. En un proyecto real prefiero modificar la escritura desde el StartUp tal como lo genera un proyecto MVC.
-
-```c#
-app.UseMvc(routes =>
-{
-    routes.MapRoute(
-        name: "default",
-        template: "{controller=Home}/{action=Index}/{id?}");
-});
-```
-
 **Resultado carpetas**
 
 ```cmd
@@ -561,168 +552,6 @@ app.UseMvc(routes =>
 └── jsconfig.json
 ```
 
-## Páginas de ayuda API mediante Swagger
-
-> Para generar páginas de ayuda y una documentación de calidad para la API web, por medio de [Swagger](https://swagger.io/) con la implementación de .NET Core [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), lo único que tiene que hacer es agregar un par de paquetes de NuGet y modificar el archivo _Startup.cs_.
-
-- En la ventana  **Consola del Administrador de paquetes**:
-
-```cmd
-Install-Package Swashbuckle.AspNetCore
-```
-
-- En el cuadro de diálogo  **Administrar paquetes NuGet**:
-  - Haga clic con el botón derecho en el proyecto en el  **Explorador de soluciones**  >  **Administrar paquetes NuGet**.
-  - Establezca el  **origen del paquete**  en "nuget.org".
-  - Escriba "Swashbuckle.AspNetCore" en el cuadro de búsqueda.
-  - Seleccione el paquete "Swashbuckle.AspNetCore" en la pestaña  **Examinar**  y haga clic en  **Instalar**.
-
-### Agregar y configurar Swagger en el middleware
-
-Agregue el generador de Swagger a la colección de servicios en el método  `ConfigureServices`  de  _Startup.cs_:
-
-```c#
-public void ConfigureServices(IServiceCollection services)
-{
-	var connection = Configuration.GetConnectionString("Dev");
-    services.AddDbContext<SchoolDbContext>(options =>
-	    options.UseSqlServer(connection));
-    services.AddMvc();
-
-    // Register the Swagger generator, defining one or more Swagger documents
-    services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new Info {
-            Version = "v1",
-            Title = "Students API",
-            Description = "A simple example ASP.NET Core Web API",
-            TermsOfService = "None",
-            Contact = new Contact { Name = "Sara Lissette Luis Ibáñez", Email = "lissette.ibnz@gmail.com", Url = "https://github.com/LissetteIbnz" },
-            License = new License { Name = "Use under ISC", Url = "https://github.com/LissetteIbnz/aspnetcore-api-vuejs-spa/blob/master/LICENSE.md" }
-        });
-
-        // Set the comments path for the Swagger JSON and UI.
-        var basePath = AppContext.BaseDirectory;
-        var xmlPath = Path.Combine(basePath, "API.xml");
-        c.IncludeXmlComments(xmlPath);
-    });
-}
-```
-
-Agregue la instrucción using siguiente para la clase  `Info`:
-
-```c#
-using Swashbuckle.AspNetCore.Swagger;
-```
-
-### Comentarios XML[](https://docs.microsoft.com/es-es/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio#xml-comments)
-
-Los comentarios XML se pueden habilitar con los métodos siguientes:
-
-- En el  **Explorador de soluciones**, haga clic con el botón derecho en el proyecto y seleccione  **Propiedades**.
-- Seleccione la casilla  **Archivo de documentación XML**  en la sección  **Salida**  de la pestaña  **Compilar**:
-
-![Pestaña Compilar de las propiedades del proyecto](https://docs.microsoft.com/es-es/aspnet/core/tutorials/web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
-
-En el método  `Configure`  de  _Startup.cs_, habilite el middleware para servir el documento JSON generado y la IU de Swagger:
-
-```c#
-public void Configure(IApplicationBuilder app)
-{
-    // Enable middleware to serve generated Swagger as a JSON endpoint.
-    app.UseSwagger();
-
-    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-    });
-
-    app.UseMvc();
-}
-```
-
-Ahora modificaremos las tareas para que nuestra API abra, de forma predeterminada, la interfaz de usuario de Swagger, que se puede visualizar yendo a `http://localhost:<random_port>/swagger`:
-
-_API.launchSettings.json_
-
-```json
-{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:53423/",
-      "sslPort": 0
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "API": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:53424/"
-    }
-  }
-}
-
-```
-
-[Más info sobre la configuración anterior](https://docs.microsoft.com/es-es/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio)
-
-## CORS y nuestro primer listar con Element-UI
-
-### Habilitando CORS
-
-Lo primero que debemos hacer es habilitar CORS para permitir realizar consultas AJAX a otro servidor que no pertenezca a nuestro dominio actual. Para esto nos vamos a StartUp y creamos un Policy o una política.
-
-```c#
-public void ConfigureServices(IServiceCollection services) {
-    var connection = Configuration.GetConnectionString("Dev");
-    services.AddDbContext<StudentDbContext>(options => options.UseSqlServer(connection));
-
-    services.AddTransient<IStudentService, StudentService>();
-
-    services.AddCors(options =>
-    {
-        options.AddPolicy("AllowSpecificOrigin", builder =>
-            builder.AllowAnyHeader()
-                   .AllowAnyMethod()
-                   .AllowAnyOrigin()
-        );
-    });
-
-    services.AddMvc();
-}
-```
-
-Lo que estamos diciéndole a esta política es que para cualquier header, método (put, post, delete, get) u origen todos están permitidos. No hay restricciones.
-
-Y luego le decimos a NETCore que queremos usar la política creada.
-
-```c#
-public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
-
-    app.UseCors("AllowSpecificOrigin");
-
-    app.UseMvc();
-}
-```
 
 ### Creando el Frontend
 

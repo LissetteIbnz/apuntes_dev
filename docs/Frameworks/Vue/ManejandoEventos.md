@@ -25,14 +25,14 @@ Vue.component('component', {
 new Vue({
   el: '#app',
   data: {
-  	logs: [],
+    logs: [],
     expected: ['extra', 1, 2, 3]
   },
   methods: {
-  	hearEmission: function(extra, a, b, c) {
-    	this.logs.push([extra, a, b, c]);
+    hearEmission: function(extra, a, b, c) {
+      this.logs.push([extra, a, b, c]);
       if (this.logs.length === 11) {
-      	this.logs.splice(0, 1);
+        this.logs.splice(0, 1);
       }
     }
   }
@@ -44,5 +44,3 @@ Expected output: ["extra",1,2,3]
 1. [1,2,3,null]
 2. ["extra",1,2,3]
 3. ["extra",1,2,3]
-
-

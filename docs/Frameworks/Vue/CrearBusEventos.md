@@ -4,16 +4,16 @@
 
 El patrón de bus de evento / publicación-suscripción, a pesar de la mala impresión que a veces recibe, sigue siendo una excelente manera de lograr que las secciones no relacionadas de su aplicación hablen entre sí. ¡Pero espera! Antes de ir a perder unos KB más preciosos en otra biblioteca, ¿por qué no probar el poderoso bus de eventos incorporado de Vue?
 
-Como resultado, el sistema de eventos utilizado en los componentes Vue es tan feliz de usar por sí mismo.
+## Inicializando
 
-Inicializando
-Lo primero que debe hacer es crear el bus de eventos y exportarlo en algún lugar para que otros módulos y componentes puedan usarlo. Escuche de cerca. Esta parte puede ser difícil.
+Lo primero que debe hacer es crear el bus de eventos y exportarlo en algún lugar para que otros módulos y componentes puedan usarlo.
 
-event-bus.js
+_event-bus.js_
 
+```js
 import Vue from 'vue';
 export const EventBus = new Vue();
-¿Que sabes? ¡Resulta que no fue nada complicado!
+```
 
 Todo lo que necesita hacer es importar la biblioteca Vue y exportar una instancia de la misma. (En este caso, lo he llamado EventBus .) Lo que esencialmente obtienes es un componente que está completamente desacoplado del DOM o del resto de tu aplicación. Todo lo que existe en él son sus métodos de instancia, por lo que es bastante ligero.
 

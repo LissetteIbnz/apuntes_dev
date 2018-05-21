@@ -34,13 +34,25 @@ vue init webpack-simple
 Finalizada la instalación de la plantilla, abrimos el proyecto con VSC, ejecutamos `npm i` y aceptamos agregar los archivos de C# necesarios para el proyecto .Net.
 > Si se produce algún error al ejecutar `npm install`, cerrar los programas que puedan estar usando el repositorio/proyecto y desde consola como administrador, ejecutarlo nuevamente.
 
-#### Configurar EsLint con AirBnb
+#### Configurar ESLint para Vue con AirBnb y Babel
 
-Lo siguiente será configurar EsLint en nuestro proyecto. Para ello, ejecutaremos el siguiente comando:
+Lo siguiente será configurar ESLint en nuestro proyecto. Para ello, ejecutaremos los siguientes comandos:
+`npm install --save-dev eslint eslint-plugin-vue`
 
-`npm install eslint eslint-config-airbnb eslint-plugin-import  eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint eslint-plugin-html eslint-plugin-vue vue-eslint-parser`
+Ahora instalamos babel-eslint para la comprobación de Javascript:
+`npm install --save-dev babel-eslint`
 
-Después, crearemos el archivo `.eslintrc.js` en el raíz de nuestra aplicación:
+> `sourceType` se puede establecer en 'module' (predeterminado) o 'script' si su código no usa módulos ECMAScript.
+> `allowImportExportEverywhere` se puede establecer en verdadero para permitir que las declaraciones de importación y exportación aparezcan en cualquier lugar donde se permita una declaración, si su entorno de compilación lo admite. Por defecto, las declaraciones de importación y exportación solo pueden aparecer en el nivel superior de un programa.
+> `codeFrame` se puede establecer en falso para deshabilitar el marco de código en el reporte. Esto es útil ya que algunos formateadores ESLINT no funcionan bien con él.
+>[más info](https://github.com/babel/babel-eslint)
+
+Ahora instalaremos el plugin de AirBnb.
+`npm install --save-dev eslint-config-airbnb-base eslint-plugin-import`
+
+> El paquete de eslint-config-airbnb-base necesita además, eslint-plugin-import. No instalamos eslint-config-airbnb porque es mas bien para react y tiene dependencias que no necesitamos.
+
+Y por último, crearemos el archivo `.eslintrc.js` en el raíz de nuestra aplicación:
 
 _.eslintrc.js_
 
@@ -48,32 +60,28 @@ _.eslintrc.js_
 module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module',
-    allowImportExportEverywhere: true,
+  'parserOptions': {
+    'parser': 'babel-eslint',
+    'ecmaVersion': 2017,
+    'sourceType': 'module'
   },
-  extends: [ 
-    'airbnb',
-    'plugin:vue/strongly-recommended'
+  extends: [
+    'plugin:vue/recommended',
+    "airbnb-base",
   ],
-  // We could also use the https://github.com/vuejs/eslint-plugin-vue
-  // required to lint *.vue files
   plugins: [
-    'html'
+    "vue",
   ],
-  // add your custom rules here
-  'rules': {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    // allow async-await
-    'generator-star-spacing': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+  rules: {
+    // override/add rules settings here, such as:
   }
 }
 
 ```
+
+### Tips sobre ESLint
+
+Para deshabilitar el aviso por el `new Vue`, agregamos encima de la creación de instancia `/* eslint-disable no-new */`
 
 ### 3. Conectar ASP.NET Core con VueJS
 
@@ -89,7 +97,7 @@ Una vez instalados, actualizamos el fichero _webpack.config.js_ para establecer 
 const bundleOutputDir = './wwwroot/dist';
 
 module.exports = {
-  entry: { 'main': './src/main.js' },
+  entry: { main: './src/main.js' },
   output: {
     path: path.join(__dirname, bundleOutputDir),
     filename: '[name].js',

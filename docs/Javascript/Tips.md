@@ -12,3 +12,10 @@ import Swatches from 'vue-swatches';
 import 'vue-swatches/dist/vue-swatches.min.css';
 // #endregion
 ```
+
+## Copiar array
+
+```js
+
+const namesCopy = Object.values(names)
+```

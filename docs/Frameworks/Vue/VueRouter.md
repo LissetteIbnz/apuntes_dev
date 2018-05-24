@@ -1,5 +1,10 @@
 # VUE-ROUTER
 
+Tabla de contenidos
+
+- [Manejar el historial](#manejar-el-historial)
+  - [Back](#back)
+
 Usar $route en tu componente genera un acoplamiento estrecho con la ruta, lo cual limita la flexibilidad del componente dado que solo puede utilizarse en ciertas URL.
 
 Para desacoplar el componente del enrutador utiliza props:
@@ -98,6 +103,14 @@ new Vue({
     </div>
   `
 }).$mount('#app')
+```
+
+## Manejar el historial
+
+### Back
+
+```js
+this.$router.back()
 ```
 
 https://github.com/vuejs/vue-router/tree/dev/examples

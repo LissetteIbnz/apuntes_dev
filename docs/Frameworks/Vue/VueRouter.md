@@ -5,6 +5,46 @@ Tabla de contenidos
 - [Manejar el historial](#manejar-el-historial)
   - [Back](#back)
 
+## Pasar parámetros a tus rutas
+
+### De forma oculta
+
+Al no definir más parámetros en la ruta dentro de `routes/index.js`, los pasados de forma dinámica serán omitidos en la url del navegador y sólo serán accesibles desde la instancia `this.$route.params`.
+También podemos especificar que algunos parámetros sí estén en la url.
+
+URL mostrada: `http://localhost:5000/jobs/scheduler/C/7eb6aed4-6958-4626-9980-75cd9aa2af90`
+
+```js
+···
+{
+  path: '/jobs/scheduler/:company/:reference',
+  name: 'jobs-scheduler',
+  component: JobsScheduler,
+},
+···
+
+```
+
+```js
+this.$router.push({
+  name: 'jobs-scheduler',
+  params:
+  {
+    company: this.item.key.company,
+    reference: this.item.key.reference,
+    start: this.datePlanning.start, // Omitido en la url
+    end: this.datePlanning.end, // Omitido en la url
+  },
+  component: JobsScheduler,
+});
+
+```
+
+
+
+
+
+
 Usar $route en tu componente genera un acoplamiento estrecho con la ruta, lo cual limita la flexibilidad del componente dado que solo puede utilizarse en ciertas URL.
 
 Para desacoplar el componente del enrutador utiliza props:

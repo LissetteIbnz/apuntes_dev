@@ -19,3 +19,13 @@ import 'vue-swatches/dist/vue-swatches.min.css';
 
 const namesCopy = Object.values(names)
 ```
+
+## Agregar una key a un objeto
+
+```js
+var result = arrOfObj.map(function(el) {
+  var o = Object.assign({}, el);
+  o.isActive = true;
+  return o;
+});
+```

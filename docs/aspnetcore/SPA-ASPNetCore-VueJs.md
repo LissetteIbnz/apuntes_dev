@@ -48,32 +48,56 @@ Ahora instalamos babel-eslint para la comprobación de Javascript:
 >[más info](https://github.com/babel/babel-eslint)
 
 Ahora instalaremos el plugin de AirBnb.
-`npm install --save-dev eslint-config-airbnb-base eslint-plugin-import`
+`npm install --save-dev eslint-config-airbnb-base eslint-plugin-import eslint-import-resolver-webpack`
 
 > El paquete de eslint-config-airbnb-base necesita además, eslint-plugin-import. No instalamos eslint-config-airbnb porque es mas bien para react y tiene dependencias que no necesitamos.
+Además hemos agregado `eslint-import-resolver-webpack` para que ESLint pueda resolver los alias de Webpack.
 
 Y por último, crearemos el archivo `.eslintrc.js` en el raíz de nuestra aplicación:
 
 _.eslintrc.js_
 
 ```js
+const path = require('path');
+
 module.exports = {
   root: true,
+  // Configuración para resolver los alias declarados en webpack.config.js
+  settings: {
+    'import/resolver': {
+      webpack: path.join(__dirname, 'webpack.config.js'),
+      node: {
+        paths: ['src']
+      }
+    }
+  },
   parser: 'vue-eslint-parser',
   'parserOptions': {
     'parser': 'babel-eslint',
     'ecmaVersion': 2017,
-    'sourceType': 'module'
+    'sourceType': 'module',
+    'allowImportExportEverywhere': true,
   },
   extends: [
+    'airbnb-base',
     'plugin:vue/recommended',
-    "airbnb-base",
   ],
   plugins: [
-    "vue",
+    'vue',
   ],
   rules: {
-    // override/add rules settings here, such as:
+    'arrow-parens': 0,
+    'generator-star-spacing': 0,
+    'import/extensions': [ 2, {
+      'js': 'never', 'vue': 'never', 'json': 'always',
+    }],
+    'max-len':
+      [
+        'error', 120, 2
+      ],
+    'no-plusplus': ['error', { 'allowForLoopAfterthoughts': true }],
+    'object-property-newline': 'error',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
 }
 

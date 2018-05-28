@@ -12,3 +12,11 @@ Si además queremos que se ignoren los ficheros creados en ella, sólo debemos a
 # Ignorando los ficheros de la carpeta cache/
 cache/
 ```
+
+### Completar un commit mediante consola
+
+- press "i"
+- write your merge message
+- press "esc"
+- write ":wq"
+- then press enter

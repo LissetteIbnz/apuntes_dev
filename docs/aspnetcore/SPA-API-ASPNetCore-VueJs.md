@@ -3,9 +3,9 @@
 **Tabla de contenidos**
 
 - [Configurando nuestra Api con EF](#configurando-nuestra-api-con-ef)
-    - [SharedContracts](#sharedcontracts)
-    - [Persistence](#persistence)
-        - [Inyectar nuestro contexto con DI](#inyectar-nuestro-contexto-con-di)
+  - [SharedContracts](#sharedcontracts)
+  - [Persistence](#persistence)
+    - [Inyectar nuestro contexto con DI](#inyectar-nuestro-contexto-con-di)
 - [Agregando el código para inicializar la base de datos con datos de prueba](#agregando-el-código-para-inicializar-la-base-de-datos-con-datos-de-prueba)
 - [Services](#services)
 - [API](#api)
@@ -31,7 +31,7 @@ Seguidamente, crearemos una carpeta llamada DataContracts y en ella, tres clases
 
 _SharedContracts.DataContracts.Course.cs_
 
-```c#
+```csharp
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -100,7 +100,7 @@ namespace SharedContracts
 > La propiedad  `Enrollments`  es una propiedad de navegación.  Las propiedades de navegación contienen otras entidades relacionadas con esta entidad.
 > Si una propiedad de navegación puede contener varias entidades (como en las relaciones de varios a varios o uno a varios), su tipo debe ser una lista a la que se puedan agregar las entradas, eliminarlas y actualizarlas, como  `ICollection<T>`.  Puede especificar  `ICollection<T>`  o un tipo como  `List<T>`  o  `HashSet<T>`.  Si especifica  `ICollection<T>`, EF crea una colección  `HashSet<T>`  de forma predeterminada.
 
-Ahora crearemos la interfaz que contendrá las operaciones que podrán realizarse con nuestras entidades. Primero, crearemos la carpeta que contendrá las interfaz con los métodos. Esta carpeta se llamará OperationContracts.
+Ahora crearemos la interfaz que contendrá las operaciones que podrán realizarse con nuestras entidades. Para ello, primero crearemos la carpeta que contendrá las interfaz con los métodos. Esta carpeta se llamará OperationContracts.
 
 _SharedContracts.OperationContracts.IStudentService.cs_
 

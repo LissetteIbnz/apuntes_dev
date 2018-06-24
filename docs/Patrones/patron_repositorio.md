@@ -8,9 +8,9 @@ Un repositorio media entre el dominio y las capas de mapeo de datos, actuando co
 
 ## Implementaciones
 
-### Clases base
+### Base classes
 
-Estas clases se pueden reutilizar para todas las implementaciones diferentes.
+Estas clases se pueden reutilizar para las diferentes implementaciones.
 
 ### UnitOfWork
 
@@ -23,7 +23,7 @@ interfaz pública IUnitOfWork: IDisposable
 }
 ```
 
-### Paginación
+### Paginación / Paging
 
 También necesitamos tener resultados de página.
 
@@ -55,7 +55,7 @@ public class UserRepository
 }
 ```
 
-### Clasificación
+### Clasificación / Sorting
 
 Finalmente, preferimos hacer los elementos de clasificación y página, ¿verdad?
 
@@ -69,9 +69,9 @@ var page = repository.Find("Jon", constraints);
 
 Tenga en cuenta que utilicé el nombre de la propiedad, pero también podría haber escrito `constraints.SortBy(x => x.FirstName)`. Sin embargo, es un poco difícil de escribir en aplicaciones web donde obtenemos la propiedad de ordenación como una cadena.
 
-La clase es un poco grande, pero puedes encontrarla en [github](https://github.com/jgauffin/Griffin.Data/blob/master/src/Griffin.Data/Queries/QueryConstraintsT.cs).
+La clase completa puedes encontrarla en [github](https://github.com/jgauffin/Griffin.Data/blob/master/src/Griffin.Data/Queries/QueryConstraintsT.cs).
 
-En nuestro repositorio podemos aplicar las restricciones como (si es compatible con LINQ):
+En nuestro repositorio (si es compatible con LINQ) podemos aplicar las restricciones como sigue:
 
 ```csharp
 public class UserRepository
@@ -91,7 +91,7 @@ public class UserRepository
 
 Los métodos de extensión también están disponibles en [github](https://github.com/jgauffin/Griffin.Data/blob/master/src/Griffin.Data/Queries/QueryConstraintsExtensions.cs).
 
-## Contrato básico
+## Basic contract
 
 Normalmente empiezo a usar una definición pequeña para el repositorio, ya que hace que mis otros contratos sean menos detallados. Tenga en cuenta que algunos de mis contratos de repositorio no implementan esta interfaz (por ejemplo, si alguno de los métodos no se aplica).
 
@@ -115,11 +115,11 @@ public interface ITruckRepository : IRepository<Truck, string>
 }
 ```
 
-Esa especialización es importante. Mantiene el contrato simple. Solo crea métodos que sabes que necesitas.
+Esa especialización es importante. Mantiene el contrato simple. Sólo crea métodos que sabes que necesitas.
 
-## Marco de la entidad
+## Entity Framework
 
-Tenga en cuenta que **el patrón de repositorio solo es útil si tiene POCO que están mapeados usando código primero**. De lo contrario, solo romperás la abstracción usando las entidades. El patrón de repositorio no es muy útil entonces.
+Tenga en cuenta que **el patrón de repositorio solo es útil si tiene POCO que están mapeados usando Code First**. De lo contrario, solo romperás la abstracción usando las entidades. El patrón repositorio no es muy útil entonces.
 
 Lo que quiero decir es que si usa el diseñador de modelos siempre obtendrá una representación perfecta de la base de datos (pero como clases). El problema es que esas clases pueden no ser una representación perfecta de su modelo de dominio. Por lo tanto, debe cortar las esquinas en el modelo de dominio para poder usar sus clases de db generadas.
 

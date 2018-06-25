@@ -1,7 +1,5 @@
 # Qué es Vuex
 
-> http://op6gls4d1.bkt.clouddn.com/vuejs-vuex/docs/es/intro.html#
-
 Vuex es una arquitectura para el desarrollo de aplicaciones en Vue.js con manejo de estado centralizado. Está inspirado en Flux y Redux, pero con conceptos simplificados e implementación diseñada específicamente para tomar ventaja del sistema reactivo de Vue.js.
 
 ## Por qué lo necesito

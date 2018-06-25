@@ -17,3 +17,5 @@
 - Probando
 - Recarga en caliente
 - Referencia API
+
+> http://op6gls4d1.bkt.clouddn.com/vuejs-vuex/docs/es/intro.html#

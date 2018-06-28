@@ -1,6 +1,12 @@
 # PATRÓN REPOSITORIO
 
-> Adaptación de http://blog.gauffin.org/2013/01/repository-pattern-done-right/
+> Adaptación de [Gauffin](http://blog.gauffin.org/2013/01/repository-pattern-done-right/)
+
+Tabla de contenidos
+
+- [Qué es el Patrón Repositorio](#qué-es-el-patrón-repositorio)
+- [Implementaciones](#implementaciones)
+- [Basic contract](#basic-contract)
 
 ## Qué es el Patrón Repositorio
 
@@ -8,7 +14,7 @@ Un repositorio media entre el dominio y las capas de mapeo de datos, actuando co
 
 ## Implementaciones
 
-### Base classes
+### Base class
 
 Estas clases se pueden reutilizar para las diferentes implementaciones.
 
@@ -17,7 +23,7 @@ Estas clases se pueden reutilizar para las diferentes implementaciones.
 La unidad de trabajo representa una transacción cuando se usa en capas de datos. Normalmente, la unidad de trabajo retrotraerá la transacción si `SaveChanges()` no se ha invocado antes de desecharla.
 
 ```csharp
-interfaz pública IUnitOfWork: IDisposable 
+interfaz pública IUnitOfWork: IDisposable
 {
     void SaveChanges();
 }
@@ -32,13 +38,13 @@ public class PagedResult<TEntity>
 {
     IEnumerable<TEntity> _items;
     int _totalCount;
-    
+
     public PagedResult(IEnumerable<TEntity> items, int totalCount)
     {
         _items = items;
         _totalCount = totalCount;
     }
-    
+
     public IEnumerable<TEntity> Items { get { return _items; } }
     public int TotalCount { get { return _totalCount; } }
 }
@@ -80,10 +86,10 @@ public class UserRepository
     {
         var query = _dbContext.Users.Where(x => x.FirstName.StartsWith(text) || x.LastName.StartsWith(text));
         var count = query.Count();
-        
+
         //easy
         var items = constraints.ApplyTo(query).ToList();
-        
+
         return new PagedResult(items, count);
     }
 }
@@ -207,7 +213,7 @@ public class EntityFrameworkUnitOfWork : IUnitOfWork
     }
     public void Dispose()
     {
-        
+
     }
     public void SaveChanges()
     {

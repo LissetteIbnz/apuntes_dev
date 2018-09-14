@@ -2,15 +2,29 @@
 
 Tabla de contenidos
 
-- [Net](#net)
-- [Core](#core)
-  - [Propiedades shadow](#propiedades-shadow)
-
-## NET
-
-## CORE
+- [Controlar las relaciones de entidad](#controlar-las-relaciones-de-entidad)
+  - [Eager loading](#eager-loading)
+- [Propiedades shadow](#propiedades-shadow)
 
 > https://www.learnentityframeworkcore.com/
+
+## Controlar las relaciones de entidad
+
+Para ver las consultas SQL que genera EF, agrega la siguiente línea de código en el constructor del DbContext:
+
+```csharp
+public BookServiceContext() : base("name=BookServiceContext")
+{
+    // New code:
+    this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+}
+```
+
+Hay tres maneras de cargar los datos relacionados en Entity Framework: carga diligente (eager loading), la carga diferida y carga explícita.
+
+### Eager loading
+
+Con carga diligente, EF carga las entidades relacionadas como parte de la consulta de base de datos inicial. Para realizar la carga diligente, utilice el método de extensión `System.Data.Entity.Include`.
 
 ### Propiedades shadow
 
@@ -24,7 +38,7 @@ Las propiedades de sombra se pueden configurar mediante la API Fluent en el OnMo
 public class SampleContext : DbContext
 {
     public DbSet<Contact> Contacts { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
          modelBuilder.Entity<Contact>()
